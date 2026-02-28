@@ -1,0 +1,31 @@
+{
+  "name": "marzena",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "lucide-react": "^0.575.0",
+    "mongodb": "^7.1.0",
+    "mongoose": "^9.2.2",
+    "next": "16.1.6",
+    "next-auth": "^4.24.13",
+    "postcss": "^8.5.6",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-hot-toast": "^2.6.0",
+    "react-icon": "^1.0.0",
+    "react-icons": "^5.5.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.1",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.6",
+    "tailwindcss": "^4.2.1"
+  }
+}
