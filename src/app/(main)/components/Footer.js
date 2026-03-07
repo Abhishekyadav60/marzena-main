@@ -7,23 +7,23 @@ export default function Footer() {
   const { decorations, brand, links, newsletter, payments } = footerData;
 
   return (
-    <footer className="relative bg-[#e9dfd6] overflow-hidden">
+    <footer className="relative bg-[rgba(250,238,227,1)] overflow-hidden shadow-[0_-10px_25px_rgba(200,180,160,0.3)]">
 
-      {/* Decorative Images */}
+      {/* Desktop Decorative Images (Same as before) */}
       <Image
-        src={decorations.left}
-        alt="decor"
-        width={200}
-        height={200}
-        className="absolute left-0 bottom-0 w-20 md:w-52 opacity-30 pointer-events-none"
-      />
-
-      <Image
-        src={decorations.top}
+        src={decorations.right}
         alt="decor"
         width={800}
         height={200}
-        className="absolute left-10 top-0 w-52 md:w-full opacity-20 pointer-events-none"
+        className="hidden md:block absolute rotate-170 right-[800px] w-[800px] h-[370px] top-25 scale-y-[-1] opacity-15 pointer-events-none"
+      />
+   
+      <Image
+        src={decorations.right}
+        alt="decor"
+        width={800}
+        height={200}
+        className="hidden md:block absolute rotate-120 left-[450px] top-10 scale-y-[-1] opacity-15 pointer-events-none"
       />
 
       <Image
@@ -31,9 +31,45 @@ export default function Footer() {
         alt="decor"
         width={800}
         height={200}
-        className="absolute right-0 bottom-0 md:w-full opacity-20 pointer-events-none"
+        className="hidden md:block absolute rotate-170 left-[100px] top-80 scale-y-[-1] opacity-15 pointer-events-none"
       />
 
+      <Image
+        src={decorations.right}
+        alt="decor"
+        width={800}
+        height={200}
+        className="hidden md:block absolute left-[770px] top-35 opacity-30 pointer-events-none"
+      />
+
+      {/* Mobile Flowers */}
+
+
+<Image
+  src={decorations.right}
+  alt="decor"
+  width={800}
+  height={500}
+  className="md:hidden absolute -left-[10vw] top-0 w-[800px] max-w-[500px]  rotate-40 opacity-20 pointer-events-none"
+/>
+
+<Image
+  src={decorations.right}
+  alt="decor"
+  width={800}
+  height={300}
+  className="md:hidden absolute -right-[1px] bottom-0 w-[500px] max-w-[500px] rotate- opacity-20 pointer-events-none"
+/>
+
+<Image
+  src={decorations.right}
+  alt="decor"
+  width={800}
+  height={450}
+  className="md:hidden absolute left-1/2 -translate-x-1/2 top-[30%] w-[600px] max-w-[600px] rotate-90 opacity-15 pointer-events-none"
+/>
+
+      {/* Main Footer */}
       <div className="relative max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 z-10">
 
         {/* Brand Section */}
@@ -50,7 +86,6 @@ export default function Footer() {
             {brand.tagline}
           </p>
 
-          {/* Social Icons */}
           <div className="flex flex-wrap gap-3 mt-6">
             {brand.socials.map((social, i) => (
               <a
@@ -69,7 +104,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Links Sections */}
+        {/* Links */}
         {links.map((section, index) => (
           <div key={index}>
             <h3 className="text-lg font-semibold pl-5 text-[#2f2f2f] mb-4">

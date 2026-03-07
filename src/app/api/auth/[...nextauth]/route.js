@@ -1,23 +1,35 @@
+
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import dbConnect from "@/lib/db";
-import User from "@/models/User";
+import User from "@/app/api/models/User";
 import bcrypt from "bcryptjs";
 
-const handler = NextAuth({
+export const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
+      credentials: {},
+
       async authorize(credentials) {
-        const { email, password } = credentials;
+        if (!credentials?.email || !credentials?.password) {
+          return null;
+        }
 
         await dbConnect();
 
-        const user = await User.findOne({ email });
-        if (!user) throw new Error("Invalid credentials");
+        const user = await User.findOne({
+          email: credentials.email.toLowerCase(),
+        });
 
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) throw new Error("Invalid credentials");
+        if (!user) return null;
+
+        const isMatch = await bcrypt.compare(
+          credentials.password,
+          user.password
+        );
+
+        if (!isMatch) return null;
 
         return {
           id: user._id.toString(),
@@ -44,6 +56,8 @@ const handler = NextAuth({
   },
 
   secret: process.env.NEXTAUTH_SECRET,
-});
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

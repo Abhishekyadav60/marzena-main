@@ -6,112 +6,108 @@ import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
 export default function Login() {
-  const router = useRouter();
-  const { status } = useSession();
+const router = useRouter();
+const { status } = useSession();
 
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
+const [form, setForm] = useState({
+email: "",
+password: "",
+});
 
-  const [loading, setLoading] = useState(false);
+const [loading, setLoading] = useState(false);
 
-  //  If already logged in 
-  useEffect(() => {
-    if (status === "authenticated") {
-      router.push("/dashboard");
-    }
-  }, [status, router]);
+useEffect(() => {
+if (status === "authenticated") {
+router.push("/dashboard");
+}
+}, [status, router]);
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+const handleLogin = async (e) => {
+e.preventDefault();
+setLoading(true);
 
-    const res = await signIn("credentials", {
-      ...form,
-      redirect: false,
-    });
+const res = await signIn("credentials", {
+  email: form.email,
+  password: form.password,
+  redirect: false,
+  callbackUrl: "/dashboard",
+});
 
-    if (!res?.error) {
-      toast.success("User Login Successful", {
-        style: {
-          background: "#E8B4B8",
-          color: "#fff",
-        },
-      });
+if (res?.error) {
+  toast.error("Invalid email or password");
+  setLoading(false);
+  return;
+}
 
-      setTimeout(() => {
-        router.push("/dashboard");
-      }, 800);
-    } else {
-      toast.error("Invalid email or password");
-      setLoading(false);
-    }
-  };
+toast.success("User Login Successful", {
+  style: {
+    background: "#E8B4B8",
+    color: "#fff",
+  },
+});
 
-  if (status === "loading") {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        Checking session...
-      </div>
-    );
-  }
+router.push(res.url || "/dashboard");
 
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-[#FAEEE3] px-6">
-      <div className="bg-white w-full max-w-md rounded-2xl shadow-xl p-10">
-        <h2 className="text-3xl font-serif text-center text-[#2F2F2F] mb-2">
-          Welcome Back
-        </h2>
+};
 
-        <p className="text-center text-gray-500 mb-8">
-          Login to your Marzena account
-        </p>
+// if (status === "loading") {
+// return ( <div className="min-h-screen flex items-center justify-center">
+// Checking session... </div>
+// );
+// }
 
-        <form onSubmit={handleLogin} className="space-y-5">
-          <input
-            type="email"
-            placeholder="Email Address"
-            required
-            disabled={loading}
-            className="w-full border border-gray-300 rounded-lg px-4 py-3"
-            value={form.email}
-            onChange={(e) =>
-              setForm({ ...form, email: e.target.value })
-            }
-          />
+return ( <div className="min-h-screen flex items-center justify-center bg-[#FAEEE3] px-6"> <div className="bg-white w-full max-w-md rounded-2xl shadow-xl p-10"> <h2 className="text-3xl font-serif text-center text-[#2F2F2F] mb-2">
+Welcome Back </h2>
 
-          <input
-            type="password"
-            placeholder="Password"
-            required
-            disabled={loading}
-            className="w-full border border-gray-300 rounded-lg px-4 py-3"
-            value={form.password}
-            onChange={(e) =>
-              setForm({ ...form, password: e.target.value })
-            }
-          />
+    <p className="text-center text-gray-500 mb-8">
+      Login to your Marzena account
+    </p>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-[#E8B4B8] cursor-pointer text-white py-3 rounded-lg"
-          >
-            {loading ? "Logging in..." : "Login"}
-          </button>
-        </form>
+    <form onSubmit={handleLogin} className="space-y-5">
+      <input
+        type="email"
+        placeholder="Email Address"
+        required
+        disabled={loading}
+        className="w-full border border-gray-300 rounded-lg px-4 py-3"
+        value={form.email}
+        onChange={(e) =>
+          setForm({ ...form, email: e.target.value })
+        }
+      />
 
-        <p className="text-center text-sm mt-6">
-          Don’t have an account?{" "}
-          <span
-            onClick={() => !loading && router.push("/register")}
-            className="text-[#E8B4B8] cursor-pointer font-medium"
-          >
-            Register
-          </span>
-        </p>
-      </div>
-    </div>
-  );
+      <input
+        type="password"
+        placeholder="Password"
+        required
+        disabled={loading}
+        className="w-full border border-gray-300 rounded-lg px-4 py-3"
+        value={form.password}
+        onChange={(e) =>
+          setForm({ ...form, password: e.target.value })
+        }
+      />
+
+      <button
+        type="submit"
+        disabled={loading}
+        className="w-full bg-[#E8B4B8] cursor-pointer text-white py-3 rounded-lg"
+      >
+        {loading ? "Logging in..." : "Login"}
+      </button>
+    </form>
+
+    <p className="text-center text-sm mt-6">
+      Don’t have an account?{" "}
+      <span
+        onClick={() => !loading && router.push("/register")}
+        className="text-[#E8B4B8] cursor-pointer font-medium"
+      >
+        Register
+      </span>
+    </p>
+  </div>
+</div>
+
+);
 }

@@ -2,27 +2,27 @@ export const menuItems = [
   {
     id: 1,
     name: "Home",
-    path: "/",
+    path: "/dashboard",
   },
   {
     id: 2,
     name: "Category 1",
-    path: "/category",
+    path: "/dashboard/category",
   },
   {
     id: 3,
     name: "Best Sellers",
-    path: "/best seller",
+    path: "/dashboard/best seller",
   },
   {
     id: 4,
     name: "Contact Us",
-    path: "/contact",
+    path: "/dashboard/contact",
   },
   {
     id: 5,
     name: "About",
-    path: "/about",
+    path: "/dashboard/about",
   },
 ];
 
@@ -248,3 +248,88 @@ export const homeData = {
   }
 }
 };
+
+export const aboutData = {
+  hero: {
+    title: "About Us",
+    image: "/images/hero-main.jpg",
+  },
+  main: {
+    title: "ABOUT MARZENA",
+    description:
+      "Lorem ipsum lacus nisl dapibus tellus nisi amet sit tortor id neque massa facilisis habitasse erat rhoncus aliquet lobortis eu pharetra nibh rhoncus faucibus aliquet aliquam tincidunt ac tristique et neque eu proin at augue facilisi etiam viverra sem quam lacus sed non eu tortor ipsum sed massa tincidunt non.",
+  },
+  mission: {
+    title: "OUR MISSION",
+    description:
+      "Lorem ipsum dolor sit amet consectetur. Sodales eu tellus leo sed in urna magna velit. Pharetra sed augue faucibus tempor tempor. In aliquet imperdiet nam velit ornare urna viverra eget.",
+    image: "/images/mission.png",
+  },
+  vision: {
+    title: "OUR VISION",
+    description:
+      "Lorem ipsum dolor sit amet consectetur. Lobortis dignissim viverra faucibus mauris. Massa turpis odio id amet cursus. Nunc consequat in amet suspendisse lectus faucibus tristique scelerisque. Posuere eu sed cras proin.",
+    image: "/images/vision.png",
+  },
+
+   stats: {
+    heading:
+      "Lorem ipsum dolor sit amet consectetur. Vivamus euismod quam vulputate.",
+
+    description:
+      "Lorem ipsum dolor sit amet consectetur. Scelerisque consectetur porttitor erat aliquet sagittis massa ornare vitae facilisi. Mattis feugiat cras proin fames malesuada sollicitudin arcu viverra quam.",
+
+    items: [
+      {
+        number: "180+",
+        label: "Lorem ipsum",
+      },
+      {
+        number: "40+",
+        label: "Lorem ipsum",
+      },
+      {
+        number: "100%",
+        label: "Lorem ipsum",
+      },
+      {
+        number: "500+",
+        label: "Lorem ipsum",
+      },
+    ],
+  },
+
+
+  difference: {
+    heading: "WHAT MAKES US DIFFERENT?",
+    image: "/images/model-image.png",
+
+    features: [
+      {
+        icon: "/icons/vector1.png",
+        title: "Lorem ipsum",
+        description:
+          "Lorem ipsum dolor sit amet consectetur. In nunc condimentum porta tortor elementum a massa malesuada.",
+      },
+      {
+        icon: "/icons/frame1.png",
+        title: "Lorem ipsum",
+        description:
+          "Lorem ipsum dolor sit amet consectetur. In nunc condimentum porta tortor elementum a massa malesuada.",
+      },
+      {
+        icon: "/icons/line.png",
+        title: "Lorem ipsum",
+        description:
+          "Lorem ipsum dolor sit amet consectetur. In nunc condimentum porta tortor elementum a massa malesuada.",
+      },
+      {
+        icon: "/icons/group.png",
+        title: "Lorem ipsum",
+        description:
+          "Lorem ipsum dolor sit amet consectetur. In nunc condimentum porta tortor elementum a massa malesuada.",
+      },
+    ],
+  },
+};
+

@@ -1,5 +1,4 @@
-"use client"; // Client-side navigation (router) ke liye zaruri hai
-
+"use client"; 
 import Link from "next/link";
 import Image from "next/image";
 
@@ -25,7 +24,7 @@ export default function NotFound() {
           Sorry, we couldn't find the page you're looking for. It might have been moved, renamed, or is temporarily unavailable.
         </p>
         
-        {/* Next.js mein navigation ke liye Link component best hai */}
+
         <Link 
           href="/"
           className="inline-block px-6 py-2 border border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white transition-colors rounded"

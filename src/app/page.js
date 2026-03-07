@@ -8,9 +8,11 @@ export default  async function Home() {
   const token = cookieStore.get("token")
 
   if (token) {
-    redirect("/dashboard")
+    redirect("/")
   } else {
     redirect("/login")
   }
 
 }
+
+

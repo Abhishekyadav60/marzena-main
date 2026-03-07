@@ -1,64 +1,11 @@
 
-// "use client";
-
-// import { useSession, signOut } from "next-auth/react";
-// import { useRouter } from "next/navigation";
-// import { useEffect } from "react";
-
-// export default function Dashboard() {
-//   const { data: session, status } = useSession();
-//   const router = useRouter();
-
-//   useEffect(() => {
-//     if (status === "unauthenticated") {
-//       router.push("/login");
-//     }
-//   }, [status, router]);
-
-//   if (status === "loading") {
-//     return (
-//       <div className="min-h-screen flex items-center justify-center">
-//         Checking authentication...
-//       </div>
-//     );
-//   }
-
-//   // Extra safety
-//   if (!session) return null;
-
-//   return (
-//     <div className="min-h-screen flex flex-col items-center justify-center bg-[#FAEEE3]">
-
-//       <h1 className="text-3xl font-serif mb-4">
-//         Welcome, {session.user?.name}
-//       </h1>
-
-//       <p className="mb-6 text-gray-600">
-//         You are successfully logged in 
-//       </p>
-
-//       {/* Logout Button */}
-//       <button
-//         onClick={() => signOut({ callbackUrl: "/login" })}
-//         className="bg-black text-white px-6 py-3 rounded-lg hover:opacity-80 transition"
-//       >
-//         Logout
-//       </button>
-
-//     </div>
-//   );
-// }
-
-
-
-
 "use client";
 
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import { homeData } from "@/data/products";
-import PrimaryButton from "@/app/components/PrimaryButton";
-import InstagramPage from "@/app/components/InstagramPage";
+import PrimaryButton from "@/app/(main)/components/PrimaryButton";
+import InstagramPage from "@/app/(main)/components/InstagramPage";
 
 export default function Home() {
   const {
@@ -74,7 +21,6 @@ export default function Home() {
 
   return (
     <>
-      {/* HERO */}
       <section className="relative w-full overflow-hidden">
         <Image
           src={hero.image}
@@ -169,7 +115,7 @@ export default function Home() {
                   alt="flower"
                   width={464}
                   height={453}
-                  className="absolute rotate-[50deg] scale-x-[-1] opacity-30 top-[-300] right-[1220px] pointer-events-none"
+                  className="absolute rotate-[50deg] scale-x-[-1] opacity-30 top-[-300px] right-[1220px] pointer-events-none"
                 />
           <button className="text-md underline text-[#2f2f2f]">
             {bestSellers.button}
@@ -192,7 +138,7 @@ export default function Home() {
                 </span>
               </div>
 
-              <p className="mt-4 text-sm text-[#4a4a4a]">{item.title}</p>
+              <p className="mt-4 text-sm text-gray-800">{item.title}</p>
 
               <div className="flex items-center gap-1 text-yellow-500 text-sm mt-1">
                 {[...Array(5)].map((_, i) => (
@@ -207,6 +153,11 @@ export default function Home() {
                   {item.oldPrice}
                 </span>
                 <span className="text-sm text-gray-600">{item.discount}</span>
+              </div>
+              <div className="flex gap-2 md:gap-2 p-3">
+              <div className="w-4 h-4 md:w-4 md:h-4 rounded-full bg-pink-400"></div>
+              <div className="w-4 h-4 md:w-4 md:h-4 rounded-full bg-orange-400"></div>
+              <div className="w-4 h-4 md:w-4 md:h-4 rounded-full bg-gray-900"></div>
               </div>
             </div>
           ))}
@@ -340,7 +291,7 @@ export default function Home() {
                   alt="flower"
                   width={464}
                   height={453}
-                  className="absolute rotate-[50deg] scale-x-[-1] opacity-30 top-[140] right-[1170px] pointer-events-none"
+                  className="absolute rotate-[50deg] scale-x-[-1] opacity-30 top-[140px] right-[1170px] pointer-events-none"
                 />
             <a
               href="#"

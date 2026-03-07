@@ -12,3 +12,4 @@ export default withAuth(
 export const config = {
   matcher: ["/dashboard", "/admin"],
 };
+
