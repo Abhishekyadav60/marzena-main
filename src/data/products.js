@@ -299,7 +299,6 @@ export const aboutData = {
     ],
   },
 
-
   difference: {
     heading: "WHAT MAKES US DIFFERENT?",
     image: "/images/model-image.png",
@@ -333,3 +332,37 @@ export const aboutData = {
   },
 };
 
+// Contact Data
+export const contactData = {
+  banner: {
+    image: "/images/contact-banner.jpg",
+    title: "Contact Us"
+  },
+
+  heading: "GET IN TOUCH",
+
+  form: {
+    title: "Send us an email",
+    subtitle: "Ask us anything! We're here to help.",
+    fields: [
+      { label: "Name", type: "text", name: "name" },
+      { label: "Phone number", type: "text", name: "phone" },
+      { label: "Email *", type: "email", name: "email" },
+      { label: "Comment *", type: "textarea", name: "comment" }
+    ],
+    button: "Submit Contact"
+  },
+
+  help: {
+    title: "Live Help",
+    description:
+    "Lorem ipsum vitae orci eget suscipit posuere metus mauris pulvinar urna enim mauris luctus amet commodo placerat etiam quis metus fermentum nullam dictumst mattis dignissim habitant semper laoreet suspendisse arcu posuere vulputate rutrum id quis maecenas ornare mauris euismod dui amet in ornare commodo nulla risus mauris.",
+    button: "Message us",
+    contacts: [
+      { icon: "/icons/message-dots.png", text: "TEXT: 091-123-ELLA" },
+      { icon: "/icons/mage_email-fill.png", text: "TEXT: 091-123-ELLA" }
+    ],
+    note:
+      "Lorem ipsum urna semper egestas ultricies at lacus purus."
+  }
+};
