@@ -6,8 +6,8 @@ export const menuItems = [
   },
   {
     id: 2,
-    name: "Category 1",
-    path: "/dashboard/category",
+    name: "Collection 1",
+    path: "/dashboard/collection",
   },
   {
     id: 3,
@@ -72,14 +72,17 @@ export const footerData = {
   ],
 };
 
-export const homeData = {
-  hero: {
-    image: "/images/hero-main.jpg", 
-    title: "ETERNAL ELEGANCE",
-    subtitle: "Embrace Timeless Elegance — Where Tradition Meets Modern Grace",
-    button: "SHOP NOW",
-  },
+// Hero Data
+export const heroData = {
+  image: "/images/hero-main.jpg",
+  title: "ETERNAL ELEGANCE",
+  subtitle: "Embrace Timeless Elegance — Where Tradition Meets Modern Grace",
+  button: "Shop Now"
+};
 
+// HomePage data
+
+export const homeData = {
   collections: {
     heading: "Collections",
     button: "View All",
@@ -366,3 +369,110 @@ export const contactData = {
       "Lorem ipsum urna semper egestas ultricies at lacus purus."
   }
 };
+
+// Product Data
+
+export const product = {
+  title: "Sky Blue To Peach Satin Organza Lehenga With Blouse And Dupatta",
+  price: 186500,
+  oldPrice: 199000,
+  discount: "10% Off",
+  rating: 4.6,
+  reviews: 17,
+  stockLeft: 12,
+  deliveryWeeks: "6-7 Weeks",
+  images: [
+    "/images/p1.jpg",
+    "/images/p2.jpg",
+    "/images/p3.jpg",
+    "/images/p4.jpg",
+    "/images/p5.jpg"
+  ],
+  sizes: ["XS","S","M","L","XL","2XL","3XL"],
+  description: `Turn heads with this Sky Blue to Peach Satin Organza Lehenga, paired with an intricately designed blouse and dupatta. The soft ombre blend from serene sky blue to warm peach creates a refreshing yet elegant appeal, while the satin organza fabric offers a luxurious sheen and graceful drape.
+
+Beautifully detailed with delicate embroidery and hand‑painted artistry, the ensemble shimmers with sequins and beadwork, adding just the right amount of sparkle. Perfectly balanced between traditional charm and contemporary sophistication, this lehenga is ideal for making a statement at grand celebrations.
+
+Fabric : Satin Organza
+No Of Components : 3 (dupatta, lehenga, blouse)
+Color : Sky Blue to Peach
+Embroidery : Hand Paint, Sequins, Bead Work
+Care Instructions : Dry Clean Only`
+};
+
+
+// Collections page
+export const products = [
+  {
+    id: 1,
+    name: "Love Buzz",
+    image: "/images/p4.png",
+    price: 79500,
+    oldPrice: 88000,
+    discount: 10,
+    rating: 4.7
+  },
+  {
+    id: 2,
+    name: "Blush Dynasty",
+    image: "/images/p5.png",
+    price: 79500,
+    oldPrice: 93500,
+    discount: 15,
+    rating: 4.7
+  },
+  {
+    id: 3,
+    name: "Dessert Dawn Saree",
+    image: "/images/p6.png",
+    price: 46750,
+    oldPrice: 55500,
+    discount: 15,
+    rating: 4.7
+  },
+  {
+    id: 4,
+    name: "Champagne Drape",
+    image: "/images/p7.png",
+    price: 145000,
+    oldPrice: 184000,
+    discount: 15,
+    rating: 4.7
+  },
+  {
+    id: 5,
+    name: "Midnight Marina",
+    image: "/images/p8.png",
+    price: 156500,
+    oldPrice: 180000,
+    discount: 10,
+    rating: 4.7
+  },
+  {
+    id: 6,
+    name: "Meena Harris",
+    image: "/images/p9.png",
+    price: 165500,
+    oldPrice: 262000,
+    discount: 15,
+    rating: 4.7
+  },
+  {
+    id: 7,
+    name: "Dessert Dawn Saree",
+    image: "/images/p10.png",
+    price: 46750,
+    oldPrice: 55500,
+    discount: 15,
+    rating: 4.7
+  },
+  {
+    id: 8,
+    name: "Champagne Drape",
+    image: "/images/p11.png",
+    price: 145000,
+    oldPrice: 184000,
+    discount: 15,
+    rating: 4.7
+  }
+]

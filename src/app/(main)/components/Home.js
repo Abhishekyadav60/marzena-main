@@ -4,12 +4,13 @@
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import { homeData } from "@/data/products";
+import { heroData } from "@/data/products"
 import PrimaryButton from "@/app/(main)/components/PrimaryButton";
 import InstagramPage from "@/app/(main)/components/InstagramPage";
+import HeroSection from "@/app/(main)/components/HeroSection";
 
 export default function Home() {
   const {
-    hero,
     collections,
     marquee,
     bestSellers,
@@ -21,30 +22,7 @@ export default function Home() {
 
   return (
     <>
-      <section className="relative w-full overflow-hidden">
-        <Image
-          src={hero.image}
-          alt="banner"
-          width={1920}
-          height={650}
-          className="w-full h-[400px] md:h-[650px] object-cover"
-          priority
-        />
-
-        <div className="absolute inset-0 flex items-center justify-end px-6 md:px-24">
-          <div className="max-w-lg flex flex-col items-center text-center">
-            <h1 className="font-['Baskervville'] text-3xl md:text-5xl text-black mb-6 leading-tight">
-              {hero.title}
-            </h1>
-            <p className="font-inter text-[16px] leading-[23px] text-[#535353] mb-8 max-w-sm">
-              {hero.subtitle}
-            </p>
-            <PrimaryButton className="font-bold" variant="gold">
-            {hero.button}
-             </PrimaryButton>
-          </div>
-        </div>
-      </section>
+       <HeroSection hero={heroData} PrimaryButton={PrimaryButton} />
 
       {/* COLLECTIONS */}
       <section className="relative bg-orange-50 py-16 px-6 md:px-12">
