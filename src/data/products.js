@@ -441,7 +441,7 @@ export const products = [
   },
   {
     id: 5,
-    name: "Midnight Marina",
+    name: "Midnight Marina saree set",
     image: "/images/p8.png",
     price: 156500,
     oldPrice: 180000,
@@ -450,7 +450,7 @@ export const products = [
   },
   {
     id: 6,
-    name: "Meena Harris",
+    name: "Meena Harris - Bloush Pink Embelished",
     image: "/images/p9.png",
     price: 165500,
     oldPrice: 262000,
