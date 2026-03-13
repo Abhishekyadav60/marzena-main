@@ -372,33 +372,33 @@ export const contactData = {
 
 // Product Data
 
-export const product = {
-  title: "Sky Blue To Peach Satin Organza Lehenga With Blouse And Dupatta",
-  price: 186500,
-  oldPrice: 199000,
-  discount: "10% Off",
-  rating: 4.6,
-  reviews: 17,
-  stockLeft: 12,
-  deliveryWeeks: "6-7 Weeks",
-  images: [
-    "/images/p1.jpg",
-    "/images/p2.jpg",
-    "/images/p3.jpg",
-    "/images/p4.jpg",
-    "/images/p5.jpg"
-  ],
-  sizes: ["XS","S","M","L","XL","2XL","3XL"],
-  description: `Turn heads with this Sky Blue to Peach Satin Organza Lehenga, paired with an intricately designed blouse and dupatta. The soft ombre blend from serene sky blue to warm peach creates a refreshing yet elegant appeal, while the satin organza fabric offers a luxurious sheen and graceful drape.
+// export const product = {
+//   title: "Sky Blue To Peach Satin Organza Lehenga With Blouse And Dupatta",
+//   price: 186500,
+//   oldPrice: 199000,
+//   discount: "10% Off",
+//   rating: 4.6,
+//   reviews: 17,
+//   stockLeft: 12,
+//   deliveryWeeks: "6-7 Weeks",
+//   images: [
+//     "/images/p1.jpg",
+//     "/images/p2.jpg",
+//     "/images/p3.jpg",
+//     "/images/p4.jpg",
+//     "/images/p5.jpg"
+//   ],
+//   sizes: ["XS","S","M","L","XL","2XL","3XL"],
+//   description: `Turn heads with this Sky Blue to Peach Satin Organza Lehenga, paired with an intricately designed blouse and dupatta. The soft ombre blend from serene sky blue to warm peach creates a refreshing yet elegant appeal, while the satin organza fabric offers a luxurious sheen and graceful drape.
 
-Beautifully detailed with delicate embroidery and hand‑painted artistry, the ensemble shimmers with sequins and beadwork, adding just the right amount of sparkle. Perfectly balanced between traditional charm and contemporary sophistication, this lehenga is ideal for making a statement at grand celebrations.
+// Beautifully detailed with delicate embroidery and hand‑painted artistry, the ensemble shimmers with sequins and beadwork, adding just the right amount of sparkle. Perfectly balanced between traditional charm and contemporary sophistication, this lehenga is ideal for making a statement at grand celebrations.
 
-Fabric : Satin Organza
-No Of Components : 3 (dupatta, lehenga, blouse)
-Color : Sky Blue to Peach
-Embroidery : Hand Paint, Sequins, Bead Work
-Care Instructions : Dry Clean Only`
-};
+// Fabric : Satin Organza
+// No Of Components : 3 (dupatta, lehenga, blouse)
+// Color : Sky Blue to Peach
+// Embroidery : Hand Paint, Sequins, Bead Work
+// Care Instructions : Dry Clean Only`
+// };
 
 
 // Collections page
@@ -474,5 +474,98 @@ export const products = [
     oldPrice: 184000,
     discount: 15,
     rating: 4.7
-  }
+  },
+  {
+    id: 9,
+    name: "Royal Aqua saree set",
+    image: "/images/p12.png",
+    price: 99500,
+    oldPrice: 99000,
+    discount: 5,
+    rating: 4.7
+  },
+  {
+    id: 10,
+    name: "Seven Seas Saree",
+    image: "/images/p13.png",
+    price: 149500,
+    oldPrice: 150500,
+    discount: 15,
+    rating: 4.7
+  },
+  {
+    id: 11,
+    name: "Jasmine Jubilee",
+    image: "/images/p14.png",
+    price: 112500,
+    oldPrice: 55500,
+    discount: 15,
+    rating: 4.7
+  },
+  {
+    id: 12,
+    name: "Taupe it up saree set",
+    image: "/images/p15.png",
+    price: 118500,
+    oldPrice: 184000,
+    discount: 15,
+    rating: 4.7
+  },
+  {
+    id: 13,
+    name: "Rose Quartz Romance-pre-stitched saree",
+    image: "/images/p16.png",
+    price: 181500,
+    oldPrice: 185000,
+    discount: 10,
+    rating: 4.7
+  },
+  {
+    id: 14,
+    name: "Ivory & Red Saree Set",
+    image: "/images/p17.png",
+    price: 244500,
+    oldPrice: 255500,
+    discount: 15,
+    rating: 4.7
+  },
+  {
+    id: 15,
+    name: "Sobhita in Blue & Gold Saree Set",
+    image: "/images/p18.png",
+    price: 200500,
+    oldPrice: 300500,
+    discount: 15,
+    rating: 4.7
+  },
+  {
+    id: 16,
+    name: "Jessica Wang in Olive Shaded ",
+    image: "/images/p19.png",
+    price: 122500,
+    oldPrice: 140000,
+    discount: 15,
+    rating: 4.7
+  },
 ]
+
+ export const features = [
+    {
+      id: 1,
+      image: "/icons/frame.png",
+      title: "Free Shipping",
+      desc: "Lorem ipsum sed in egestas blandit diam molestie volutpat egestas nisl facilisi.",
+    },
+    {
+      id: 2,
+      image: "/icons/layer.png",
+      title: "Easy Free Returns",
+      desc: "Lorem ipsum sed in egestas blandit diam molestie volutpat egestas nisl facilisi.",
+    },
+    {
+      id: 3,
+      image: "/icons/vector.png",
+      title: "Genuine Products",
+      desc: "Lorem ipsum sed in egestas blandit diam molestie volutpat egestas nisl facilisi.",
+    },
+  ]

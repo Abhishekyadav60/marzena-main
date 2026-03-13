@@ -29,7 +29,7 @@ const InstagramPage = () => {
                 alt="instagram"
                 width={300}
                 height={400}
-                className="w-full rounded-xl aspect-[3/4] object-cover"
+                className="w-full rounded-xl aspect-[3/3] object-cover object-[50%_30%]"
               />
             ))}
           </div>

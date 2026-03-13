@@ -5,6 +5,7 @@ import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import { homeData } from "@/data/products";
 import { heroData } from "@/data/products"
+import Link from "next/link";
 import PrimaryButton from "@/app/(main)/components/PrimaryButton";
 import InstagramPage from "@/app/(main)/components/InstagramPage";
 import HeroSection from "@/app/(main)/components/HeroSection";
@@ -30,9 +31,11 @@ export default function Home() {
           <h2 className="text-4xl font-serif text-[#2f2f2f]">
             {collections.heading}
           </h2>
-          <button className="text-md underline font-semibold text-[#2f2f2f]">
+          <Link 
+          href="/dashboard/collection"
+           className="text-md underline font-semibold text-[#2f2f2f]">
             {collections.button}
-          </button>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -59,7 +62,7 @@ export default function Home() {
                   alt={item.title}
                   width={600}
                   height={600}
-                  className={`rounded-xl w-full ${item.height} object-cover`}
+                  className={`rounded-xl w-full ${item.height} object-cover object-[50%_30%]`}
                 />
                 <h3 className="mt-5 text-xl font-medium text-[#2f2f2f]">
                   {item.title}
@@ -109,7 +112,7 @@ export default function Home() {
                   alt={item.title}
                   width={600}
                   height={600}
-                  className="rounded-xl w-full h-[470px] object-cover"
+                  className="rounded-xl w-full h-[470px] object-cover object-[50%_30%]"
                 />
                 <span className="absolute top-0 left-0 rounded-tl-md bg-black text-white text-xs px-3 py-1">
                   {item.tag}
@@ -213,7 +216,7 @@ export default function Home() {
             alt={cat.title}
             width={673}
             height={538}
-            className="w-full h-[538px] rounded-lg object-cover"
+            className="w-full h-[538px] rounded-lg object-cover object-[50%_30%]"
           />
         </div>
 
@@ -287,7 +290,7 @@ export default function Home() {
                   alt="review"
                   width={400}
                   height={290}
-                  className="w-full h-[290px] object-cover rounded-xl"
+                  className="w-full h-[290px] object-cover object-[50%_30%] rounded-xl"
                 />
 
                 <div className="flex gap-6 text-yellow-400 text-3xl">
