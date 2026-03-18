@@ -152,18 +152,22 @@ export default function Footer() {
             © {new Date().getFullYear()}, All Rights Reserved.
           </p>
 
-          <div className="flex flex-wrap justify-center md:justify-end gap-4 items-center">
-            {payments.map((card, i) => (
-              <Image
-                key={i}
-                src={card}
-                alt="payment"
-                width={60}
-                height={30}
-                className="h-8 w-auto"
-              />
-            ))}
-          </div>
+         <div className="flex flex-wrap justify-center md:justify-end gap-4 items-center">
+  {payments.map((card, i) => (
+    <div
+      key={i}
+      className="border border-gray-300 rounded-md w-[60px] h-[40px] flex items-center justify-center bg-white"
+    >
+      <Image
+        src={card}
+        alt="payment"
+        width={card.includes("paypal") ? 28 : 35}
+        height={card.includes("paypal") ? 18 : 25}
+        className="object-contain cursor-pointer"
+      />
+    </div>
+  ))}
+</div>
 
         </div>
       </div>

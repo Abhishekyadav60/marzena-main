@@ -65,7 +65,7 @@ export const footerData = {
     "/icons/amex.png",
     "/icons/apple.png",
     "/icons/google.png",
-    "/icons/visa1.png",
+    "/icons/shopify.png",
     "/icons/mastercard.png",
     "/icons/paypal.png",
     "/icons/visa.png",
@@ -370,37 +370,6 @@ export const contactData = {
   }
 };
 
-// Product Data
-
-// export const product = {
-//   title: "Sky Blue To Peach Satin Organza Lehenga With Blouse And Dupatta",
-//   price: 186500,
-//   oldPrice: 199000,
-//   discount: "10% Off",
-//   rating: 4.6,
-//   reviews: 17,
-//   stockLeft: 12,
-//   deliveryWeeks: "6-7 Weeks",
-//   images: [
-//     "/images/p1.jpg",
-//     "/images/p2.jpg",
-//     "/images/p3.jpg",
-//     "/images/p4.jpg",
-//     "/images/p5.jpg"
-//   ],
-//   sizes: ["XS","S","M","L","XL","2XL","3XL"],
-//   description: `Turn heads with this Sky Blue to Peach Satin Organza Lehenga, paired with an intricately designed blouse and dupatta. The soft ombre blend from serene sky blue to warm peach creates a refreshing yet elegant appeal, while the satin organza fabric offers a luxurious sheen and graceful drape.
-
-// Beautifully detailed with delicate embroidery and hand‑painted artistry, the ensemble shimmers with sequins and beadwork, adding just the right amount of sparkle. Perfectly balanced between traditional charm and contemporary sophistication, this lehenga is ideal for making a statement at grand celebrations.
-
-// Fabric : Satin Organza
-// No Of Components : 3 (dupatta, lehenga, blouse)
-// Color : Sky Blue to Peach
-// Embroidery : Hand Paint, Sequins, Bead Work
-// Care Instructions : Dry Clean Only`
-// };
-
-
 // Collections page
 export const products = [
   {
@@ -569,3 +538,221 @@ export const products = [
       desc: "Lorem ipsum sed in egestas blandit diam molestie volutpat egestas nisl facilisi.",
     },
   ]
+
+
+  // Product Data
+
+export const productData = {
+  title: "Sky Blue To Peach Satin Organza Lehenga With Blouse And Dupatta",
+  price: 186500,
+  oldPrice: 199000,
+  discount: "10% Off",
+  rating: 4.6,
+  reviews: 17,
+  stockLeft: 12,
+  deliveryWeeks: "6-7 Weeks",
+
+  images: [
+    "/images/skyblue-lehenga-1.jpg",
+    "/images/skyblue-lehenga-2.jpg",
+    "/images/skyblue-lehenga-3.jpg",
+    "/images/skyblue-lehenga-4.jpg",
+    "/images/skyblue-lehenga-5.jpg"
+  ],
+
+  sizes: ["XS","S","M","L","XL","2XL","3XL"],
+
+  description: `Turn heads with this Sky Blue to Peach Satin Organza Lehenga, paired with an intricately designed blouse and dupatta. The soft ombre blend from serene sky blue to warm peach creates a refreshing yet elegant appeal, while the satin organza fabric offers a luxurious sheen and graceful drape.
+
+Beautifully detailed with delicate embroidery and hand-painted artistry, the ensemble shimmers with sequins and beadwork, adding just the right amount of sparkle. Perfectly balanced between traditional charm and contemporary sophistication, this lehenga is ideal for making a statement at grand celebrations.
+
+Fabric : Satin Organza
+No Of Components : 3 (dupatta, lehenga, blouse)
+Color : Sky Blue to Peach
+Embroidery : Hand Paint, Sequins, Bead Work
+Care Instructions : Dry Clean Only`,
+
+  accordionData: [
+    {
+      title: "Contact Our Stylist",
+      content:
+        "Need help choosing your size or styling this lehenga? Our stylist team is available to assist you.",
+    },
+    {
+      title: "Delivery & Shipping",
+      content:
+        "Worldwide shipping available. Orders are processed within 24-48 hours.",
+    },
+    {
+      title: "Returns & Exchange",
+      content:
+        "7 days easy exchange policy available for size issues.",
+    },
+  ],
+
+  payments: [
+    "/icons/amex.png",
+    "/icons/apple.png",
+    "/icons/google.png",
+    "/icons/shopify.png",
+    "/icons/mastercard.png",
+    "/icons/paypal.png",
+    "/icons/visa.png",
+  ],
+
+  frequentlyBoughtData: {
+    discount: 10,
+
+    buttonText: "Add To Cart",
+
+    products: [
+      {
+        id: 1,
+        name: "Azra Lehenga Set",
+        price: 78500,
+        oldPrice: 80000,
+        image: "/images/p20.png",
+      },
+      {
+        id: 2,
+        name: "Summer Yellow Chiffon Saree with Blouse",
+        price: 158500,
+        oldPrice: 159000,
+        image: "/images/p21.png",
+      },
+      {
+        id: 3,
+        name: "Rosalie Handpainted Organza Lehenga",
+        price: 114500,
+        oldPrice: 116000,
+        image: "/images/p23.png",
+      }
+    ]
+  },
+
+   discover: [
+    {
+      id: 1,
+      title: "Discover Kaftan Set",
+      desc: "Lorem ipsum dolor sit amet consectetur. Dolor et volutpat in non. Luctus sit libero urna viverra sed non dui elementum Dolor et volutpat in non. Luctus sit libero urna viverra.",
+      image: "/images/kaftan.png",
+      reverse: false,
+    },
+    {
+      id: 2,
+      title: "Discover Kurta Sets",
+      desc: "Lorem ipsum dolor sit amet consectetur. Dolor et volutpat in non. Luctus sit libero urna viverra sed non dui elementum Dolor et volutpat in non. Luctus sit libero urna viverra .",
+      image: "/images/kurta.png",
+      reverse: true,
+    }
+  ],
+  recommendations: [
+  {
+    id: 1,
+    name: "Akshara Saree Set",
+    price: "₹ 189,000.00",
+    image: "/images/akshara-saree.png",
+    isNew: true,
+  },
+  {
+    id: 2,
+    name: "Floral ruching cape set",
+    price: "₹ 47,900.00",
+    image: "/images/floral-ruching.png",
+  },
+  {
+    id: 3,
+    name: "Cutdana embroidered cape set",
+    price: "₹ 139,000.00",
+    image: "/images/cutdana-set.png",
+  },
+  {
+    id: 4,
+    name: "Nadiah saree set",
+    price: "₹ 149,000.00",
+    image: "/images/nadiah-saree.png",
+  },
+],
+discountData: {
+  title: "Get special discounts on checkout",
+  countryCode: "+91",
+  placeholder: "Phone Number",
+  buttonText: "UNLOCK",
+  checkboxText: "Get updates on WhatsApp. You may opt out anytime",
+},
+
+faqData: [
+  {
+    id: 1,
+    question: "Lorem ipsum sit elit enim ultricies quis?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+  {
+    id: 2,
+    question: "Lorem ipsum sit elit enim ultricies quis?",
+    answer:
+      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  },
+  {
+    id: 3,
+    question: "Lorem ipsum sit elit enim ultricies quis?",
+    answer:
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+  },
+  {
+    id: 4,
+    question: "Lorem ipsum sit elit enim ultricies quis?",
+    answer:
+      "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  },
+  {
+    id: 5,
+    question: "Lorem ipsum sit elit enim ultricies quis?",
+    answer:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+  },
+],
+ relatedProducts: [
+  {
+    id: 1,
+    title: "Peach Printed Kaftan Paired With Pants",
+    price: 439000,
+    oldPrice: 500000,
+    discount: "15% off",
+    rating: 4.7,
+    image: "/images/kaftan-with-pants.png",
+    bestseller: true,
+  },
+  {
+    id: 2,
+    title: "Dusty Pink Kurta Set",
+    price: 56900,
+    oldPrice: 58000,
+    discount: "15% off",
+    rating: 4.7,
+    image: "/images/pink-kurta.png",
+    bestseller: true,
+  },
+  {
+    id: 3,
+    title: "Lvory Gown",
+    price: 298000,
+    oldPrice: 300000,
+    discount: "15% off",
+    rating: 4.7,
+    image: "/images/lvory-gown.png",
+    bestseller: true,
+  },
+  {
+    id: 4,
+    title: "Wrap Jacket Dress Set",
+    price: 49000,
+    oldPrice: 50000,
+    discount: "15% off",
+    rating: 4.7,
+    image: "/images/wrap-jacket.png",
+    bestseller: true,
+  },
+]
+};
