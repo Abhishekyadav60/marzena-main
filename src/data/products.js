@@ -547,9 +547,10 @@ export const productData = {
   price: 186500,
   oldPrice: 199000,
   discount: "10% Off",
-  rating: 4.6,
-  reviews: 17,
-  stockLeft: 12,
+  rating: 4.4,
+  taxe: "incl. of all taxes.",
+  reviews: 1180,
+  stockLeft: 13,
   deliveryWeeks: "6-7 Weeks",
 
   images: [
@@ -560,18 +561,59 @@ export const productData = {
     "/images/skyblue-lehenga-5.jpg"
   ],
 
-  sizes: ["XS","S","M","L","XL","2XL","3XL"],
+  sizes: [
+  { label: "XS", stock: 5 },
+  { label: "S", stock: 3 },
+  { label: "M", stock: 2 },
+  { label: "L", stock: 6 },
+  { label: "XL", stock: 1 },
+  { label: "2XL", stock: 4 },
+  { label: "3XL", stock: 2}
+],
 
-  description: `Turn heads with this Sky Blue to Peach Satin Organza Lehenga, paired with an intricately designed blouse and dupatta. The soft ombre blend from serene sky blue to warm peach creates a refreshing yet elegant appeal, while the satin organza fabric offers a luxurious sheen and graceful drape.
+info: [
+  {
+    id: 1,
+    text: "100% hand-embroidered",
+  },
+  {
+    id: 2,
+    text: "COD Available",
+  },
+  {
+    id: 3,
+    text: "Shipping Worldwide",
+  },
+],
 
-Beautifully detailed with delicate embroidery and hand-painted artistry, the ensemble shimmers with sequins and beadwork, adding just the right amount of sparkle. Perfectly balanced between traditional charm and contemporary sophistication, this lehenga is ideal for making a statement at grand celebrations.
+deliveryData: {
+  deliveryDays: 3,
+  cutoffHours: 24,
 
-Fabric : Satin Organza
-No Of Components : 3 (dupatta, lehenga, blouse)
-Color : Sky Blue to Peach
-Embroidery : Hand Paint, Sequins, Bead Work
-Care Instructions : Dry Clean Only`,
+  features: [
+    { id: 1, label: "7 Days Exchange" },
+    { id: 2, label: "1 Year Warranty" },
+    { id: 3, label: "Free Shipping" },
+    { id: 4, label: "Pro Active Customer Support" },
+  ],
+},
 
+ descriptionData: {
+  title: "Description",
+  content: `Turn heads with this Sky Blue to Peach Satin Organza Lehenga, paired with an intricately designed blouse and dupatta. The soft ombré blend from serene 
+  sky blue to warm peach creates a refreshing yet elegant appeal, while the satin organza fabric offers a luxurious sheen and graceful drape.
+
+  Beautifully detailed with delicate embroidery and hand-painted artistry, the ensemble shimmers with sequins and beadwork, adding just the right amount of sparkle. Perfectly balanced between traditional charm and contemporary sophistication, this lehenga is ideal for making a statement at grand celebrations.`,
+
+  details: [
+    { label: "Fabric", value: "Satin Organza" },
+    { label: "No of Components", value: "3 (dupatta, lehenga, blouse)" },
+    { label: "Color", value: "Sky Blue to Peach" },
+    { label: "Embroidery", value: "Hand Paint, Sequin, Bead Work" },
+    { label: "Care Instructions", value: "Dry Clean Only" },
+    { label: "Delivery Time", value: "6-7 Weeks" },
+  ],
+},
   accordionData: [
     {
       title: "Contact Our Stylist",
@@ -591,13 +633,16 @@ Care Instructions : Dry Clean Only`,
   ],
 
   payments: [
+    "/icons/gpay.png",
+    "/icons/paytm.png",
+    "/icons/phonePay.png",
     "/icons/amex.png",
     "/icons/apple.png",
     "/icons/google.png",
-    "/icons/shopify.png",
     "/icons/mastercard.png",
-    "/icons/paypal.png",
     "/icons/visa.png",
+    "/icons/paypal.png",
+    "/icons/shopify.png",
   ],
 
   frequentlyBoughtData: {
@@ -755,4 +800,63 @@ faqData: [
     bestseller: true,
   },
 ]
+};
+
+export const reviewsPageData = {
+  header: "Reviews",
+  sortOptions: ["Most Recent"],
+
+  gallery: [
+    "/images/p24.png",
+    "/images/p25.png",
+    "/images/p26.png",
+  ],
+
+  reviews: [
+    {
+      id: 1,
+      name: "Anita Venugopal",
+      image: "/images/user1.png",
+      rating: 4,
+      verified: true,
+      date: "August 14, 2025",
+      text: "Lorem ipsum neque aliquam enim vitae pharetra magna imperdiet volutpat auctor viverra nec vitae donec dui massa mauris.",
+    },
+    {
+      id: 2,
+      name: "Anita Venugopal",
+      image: "/images/user2.png",
+      rating: 4,
+      verified: true,
+      date: "August 14, 2025",
+      text: "Lorem ipsum neque aliquam enim vitae pharetra magna imperdiet volutpat auctor viverra nec vitae donec dui massa mauris.",
+    },
+    {
+      id: 3,
+      name: "Anita Venugopal",
+      image: "/images/user3.png",
+      rating: 4,
+      verified: true,
+      date: "August 14, 2025",
+      text: "Lorem ipsum neque aliquam enim vitae pharetra magna imperdiet volutpat auctor viverra nec vitae donec dui massa mauris.",
+    },
+    {
+      id: 4,
+      name: "Anita Venugopal",
+      image: "/images/user4.png",
+      rating: 4,
+      verified: true,
+      date: "August 14, 2025",
+      text: "Lorem ipsum neque aliquam enim vitae pharetra magna imperdiet volutpat auctor viverra nec vitae donec dui massa mauris.",
+    },
+    {
+      id: 5,
+      name: "Anita Venugopal",
+      image: "/images/user2.png",
+      rating: 5,
+      verified: true,
+      date: "August 15, 2025",
+      text: "Lorem ipsum neque aliquam enim vitae pharetra magna imperdiet volutpat auctor viverra nec vitae donec dui massa mauris.",
+    },
+  ],
 };

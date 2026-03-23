@@ -1,11 +1,14 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { toast } from "react-hot-toast";
 import { productData, homeData} from "@/data/products";
-import { Heart, Share2, Star, Plus, Minus } from "lucide-react";
+import { Heart, Share2, Star, Plus, Minus, Check, Truck } from "lucide-react";
 import PrimaryButton from "@/app/(main)/components/PrimaryButton"
 import InstagramPage from "@/app/(main)/components/InstagramPage";
+import ReviewsSection from "@/app/(main)/components/review/ReviewsSection";
+
+
 
 export default function ProductPage() {
   const [selectedImage, setSelectedImage] = useState(productData.images[0]);
@@ -17,12 +20,24 @@ export default function ProductPage() {
   const [open,setOpen] = useState(null);
   const [phone, setPhone] = useState("");
   const [openIndex, setOpenIndex] = useState(null);
- 
+  const [reviews, setReviews] = useState(productData.reviewsList || []); 
+  const [timeLeft, setTimeLeft] = useState(getRemainingTime());
+
+  const { title, countryCode, placeholder, buttonText, checkboxText } = productData.discountData;
+
+const totalStock = productData.sizes.reduce(
+  (acc, size) => acc + size.stock,
+  0
+);
+
+const maxStock = productData.sizes.reduce(
+  (acc, size) => acc + size.total,
+  0
+);
+const progressPercent = (totalStock / maxStock) * 100;
 
 
-   const { title, countryCode, placeholder, buttonText, checkboxText } = productData.discountData;
-
-   const handleChange = (e) => {
+  const handleChange = (e) => {
   const value = e.target.value.replace(/\D/g, "");
   setPhone(value);
    }
@@ -33,6 +48,12 @@ export default function ProductPage() {
 
   const increaseQty = () => setQty(q => q + 1);
   const decreaseQty = () => qty > 1 && setQty(q => q - 1);
+
+  const totalReviews = reviews.length;
+  const avgRating =
+  totalReviews === 0
+    ? 0
+    : reviews.reduce((acc, r) => acc + r.rating, 0) / totalReviews;
 
   const checkPincode = () => {
     if (pincode.length !== 6) {
@@ -52,6 +73,41 @@ export default function ProductPage() {
   const buyNow = () => {
     alert("Proceeding to checkout");
   };
+  
+  // DeliveryInfo
+  function getRemainingTime() {
+    const now = new Date();
+    const cutoff = new Date();
+
+    cutoff.setHours(now.getHours() + (productData.deliveryData?.cutoffHours));
+
+    const diff = cutoff - now;
+
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+    return { hours, minutes };
+  }
+
+  function getDeliveryDate() {
+    const date = new Date();
+    date.setDate(date.getDate() + (productData.deliveryData?.deliveryDays));
+
+    return date.toLocaleDateString("en-US", {
+      weekday: "long",
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+  }
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(getRemainingTime());
+    }, 60000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const discountPercent = Math.round(
     ((productData.oldPrice - productData.price) / productData.oldPrice) * 100
@@ -59,16 +115,13 @@ export default function ProductPage() {
 
   const { products, discount } = productData.frequentlyBoughtData;
 
-  // Total price
   const totalPrice = products.reduce((acc, item) => acc + item.price, 0);
-
-  // Discount price
   const finalPrice = totalPrice - (totalPrice * discount) / 100;
 
   return (
     <>
-    <div className="min-h-screen bg-gray-50 py-10 px-4">
-      <div className="max-w-8xl mx-auto bg-white p-6  grid md:grid-cols-2 gap-10">
+    <div className="min-h-screen bg-gray-50 py-8 px-4">
+      <div className="max-w-8xl mx-auto bg-white p-6  grid md:grid-cols-2">
 
         {/* LEFT IMAGES */}
         <div className="flex gap-8">
@@ -84,96 +137,282 @@ export default function ProductPage() {
             ))}
           </div>
 
-          <div className="relative w-full aspect-[3/4] h-[600px] border rounded-xl overflow-hidden">
+          <div className="relative w-[550px] aspect-[3/4] h-[600px] border rounded-xl overflow-hidden">
             <Image src={selectedImage} alt="product" fill className="object-cover"/>
           </div>
         </div>
 
         {/* RIGHT DETAILS */}
         <div className="space-y-5">
-          <h1 className="text-2xl font-semibold">{productData.title}</h1>
+          <h1 className="font-inter font-medium w-[569px] text-[24px] leading-[38px] tracking-normal capitalize text-[#292929]">{productData.title}</h1>
 
           <div className="flex items-center gap-3">
-            <span className="text-2xl font-bold">₹ {productData.price.toLocaleString()}</span>
-            <span className="line-through text-gray-400">₹ {productData.oldPrice.toLocaleString()}</span>
-            <span className="text-green-600">({discountPercent}% OFF)</span>
+            <span className="text-4xl font-bold">₹ {productData.price.toLocaleString()}</span>
+            <span className="font-inter font-normal text-[24px] leading-[32px] tracking-normal align-middle line-through text-gray-400">₹ {productData.oldPrice.toLocaleString()}</span>
+            <span className="text-[#00560A] font-inter font-semibold text-[20px] leading-[32px] tracking-normal align-middle">({discountPercent}% OFF)</span>
+          </div>
+           
+          <div className="text-xs mb-3 capitalize">
+            <p>{productData.taxe}</p>
           </div>
 
           <div className="flex items-center gap-2 text-sm">
-            <Star size={16} fill="#f5a623" className="text-[#f5a623]" />
-            {productData.rating} ({productData.reviews} Reviews)
-          </div>
+        <div className="flex gap-1">
+        {[1, 2, 3, 4, 5].map((star) => (
+           <Star
+           key={star}
+           size={16}
+           className={
+           star <= Math.round(productData.rating)
+            ? "fill-[#FFCF47] text-[#FFCF47]"
+            : "text-[#FFCF47]"
+        }
+      />
+    ))}
+  </div>
 
-          <p className="text-red-600 text-sm">Only {productData.stockLeft} left</p>
+    <span className="font-normal text-[15px] leading-[22px] tracking-[-0.01em] capitalize underline">
+       {productData.rating} ({productData.reviews} Reviews)
+    </span>
+   </div>
 
-          {/* SIZE */}
+        <p className="text-red-600 text-md font-bold">Only {productData.stockLeft} left!</p>
+
           <div>
-            <p className="font-semibold mb-2">SELECT SIZE</p>
-            <div className="flex flex-wrap gap-2">
-              {productData.sizes.map(size => (
-                <button
-                  key={size}
-                  onClick={() => setSelectedSize(size)}
-                  className={`px-4 py-2 border border-gray-500 rounded-md cursor-pointer ${selectedSize===size ? "bg-black text-white" : ""}`}
-                >
-                  {size}
-                </button>
-              ))}
-            </div>
-            <div className="pt-3">
-                <button className="border w-fit border-[#b08d57]">custom</button>
-            </div>
-          </div>
+         <p className="mb-2 text-[#292929] font-bold text-[15px] leading-[24px] tracking-normal">
+          SELECT SIZE
+         </p>
 
-          {/* QUANTITY */}
-          <div>
-            <p className="font-semibold mb-2">Quantity :</p>
-            <div className="flex border border-[#C1A58B] rounded w-fit h-10">
-              <button onClick={decreaseQty} className="px-3 cursor-pointer">-</button>
-              <span className="px-4">{qty}</span>
-              <button onClick={increaseQty} className="px-3 cursor-pointer">+</button>
-            </div>
-          </div>
+       <div className="flex flex-wrap gap-3">
+  {productData.sizes.map((size) => (
+    <div key={size.label} className="relative">
 
-          {/* BUTTONS */}
-          <div className="flex flex-col gap-3">
-            <button onClick={addToCart} className="bg-[#C1A58B] text-white py-3 w-[400px] rounded-md cursor-pointer">
-              Add to Cart
-            </button>
-            <button onClick={buyNow} className="border border-[#C1A58B] py-3 rounded-md cursor-pointer">
-              Buy Now
-            </button>
-          </div>
+      {/* Size Button */}
+      <button
+        onClick={() => setSelectedSize(size)}
+        className={`px-4 py-2 border font-medium text-[20px] rounded-md cursor-pointer transition
+          ${selectedSize?.label === size.label
+            ? "border-black text-black bg-white"
+            : "border-gray-400 text-gray-500 hover:border-black hover:text-black"
+          }
+        `}
+      >
+        {size.label}
+      </button>
+      {selectedSize?.label === size.label && size.stock > 0 && (
+        <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 
+          px-2 py-[2px] text-[10px] text-white bg-[#D64040] rounded-full shadow-sm whitespace-nowrap">
+          Only {size.stock} left
+        </span>
+      )}
 
-          {/* ICON BUTTONS */}
-          <div className="flex gap-3">
-            <button onClick={()=>setWishlisted(!wishlisted)} className="p-3 rounded-md border border-[#EF9491] cursor-pointer">
-              <Heart className={wishlisted ? "text-red-500 fill-red-500" : ""}/>
-            </button>
-            <button onClick={()=>navigator.share?.({title:productData.title})} className="p-3 rounded cursor-pointer">
-              <Share2/>
-            </button>
-          </div>
+    </div>
+  ))}
+</div>
 
+  <div className="pt-5">
+  <button className="px-3 py-1 text-[20px] font-medium text-[#837E7E] border border-[#837E7E] rounded-md hover:border-black hover:text-black transition">
+    Custom
+  </button>
+</div>
+</div>
+
+
+<div className="mt-3 w-full">
+  
+  <p className="text-[13px] text-[#202020] font-medium mb-1">
+    Hurry! Only {totalStock} items left in stock
+  </p>
+
+  <div className="w-[320px] h-2 bg-gray-200 rounded-full overflow-hidden">
+    <div
+      className="h-2 bg-[#C1A58B] rounded-full transition-all duration-500"
+      style={{
+        width: `${progressPercent}%`,
+      }}
+    />
+  </div>
+
+</div>
+  
+
+  <div className="flex flex-col gap-4 text-[13px] text-[#292929] mt-4">
+ <div className="flex flex-col gap-2 mt-2 text-[13px] text-[#292929]">
+    {productData.info.map((item) => {
+
+      return (
+        <div key={item.id} className="flex items-center gap-2">
+           <Check size={20} className="text-[#0EA514]" />
+          <span className="font-inter font-normal text-[17px] leading-[24px] tracking-normal">{item.text}</span>
+        </div>
+      );
+    })}
+  </div>
+</div>
+        
+  <div>
+  <p className="mb-2 font-inter font-medium text-[16px] leading-[24px]">
+    Quantity :
+  </p>
+  <div className="flex items-center border border-[#C1A58B] rounded-md overflow-hidden w-fit h-10">
+    <button
+      onClick={decreaseQty}
+      className="px-4 h-full text-lg text-[#292929] hover:bg-gray-100 transition"
+    >
+      −
+    </button>
+    <span className="px-5 h-full flex items-center justify-center text-[14px] font-medium">
+      {qty}
+    </span>
+    <button
+      onClick={increaseQty}
+      className="px-4 h-full text-lg text-[#292929] hover:bg-gray-100 transition"
+    >
+      +
+    </button>
+  </div>
+</div>
+
+         <div className="flex flex-col gap-3">
+     <div className="flex items-center gap-3">
+    <button
+      onClick={addToCart}
+      className="bg-[#C1A58B] text-white py-3 w-[450px] rounded-md cursor-pointer"
+    >
+      Add to Cart
+    </button>
+
+    <div className="flex gap-3">
+      <button
+        onClick={() => setWishlisted(!wishlisted)}
+        className="p-3 rounded-md border border-[#EF9491] cursor-pointer"
+      >
+        <Heart className={wishlisted ? "text-red-500 fill-red-500" : ""} />
+      </button>
+
+      <button
+        onClick={() => navigator.share?.({ title: productData.title })}
+        className="p-3 rounded-mdcursor-pointer"
+      >
+        <Share2 />
+      </button>
+    </div>
+  </div>
+  <button
+    className="border border-[#C1A58B] w-[550px]  py-3 rounded-md cursor-pointer"
+  >
+    Inquire About Customization
+  </button>
+
+
+<div className="flex flex-col gap-2">
+  
+  <p className="text-sm text-[#202020]">
+    More payment options
+  </p>
+
+  <button
+    onClick={buyNow}
+    className="w-[550px] border border-[#D6A97A] cursor-pointer rounded-lg px-4 py-1 flex flex-col items-center justify-center gap-1 bg-white"
+  >
+    
+    {/* Top Row */}
+    <div className="flex items-center gap-2 text-[18px] font-medium text-[#202020]">
+      <span>Buy now with</span>
+
+      <div className="flex items-center -space-x-1">
+        {productData.payments.slice(0, 3).map((icon, index) => (
+          <div
+            key={index}
+            className="w-[19px] h-[19px] rounded-full overflow-hidden border border-black bg-white flex items-center justify-center"
+          >
+            <img
+              src={icon}
+              alt="payment"
+              className="w-[15px] h-[15px] object-contain"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Bottom Row */}
+    <div className="flex items-center gap-1 text-[12px] text-[#202020]">
+      <span>Powered By</span>
+      <img
+        src="/icons/shiprocket.png"
+        alt="shiprocket"
+        className="w-[14px] h-[14px]"
+      />
+      <span className="text-[#202020] font-medium">Shiprocket</span>
+    </div>
+
+  </button>
+</div>
+
+</div>
+
+ <div className="space-y-4">
+
+      {/* Delivery Line */}
+      <div className="flex items-center gap-2 text-[#202020] font-normal text-[14px] leading-[22px]">
+        <Truck size={18} />
+        <p>
+          Order in the next{" "}
+          <span className="font-bold">
+            {timeLeft.hours} hours {timeLeft.minutes} minutes
+          </span>{" "}
+          to get it by{" "}
+          <span className="font-bold uppercase">
+            {getDeliveryDate()}
+          </span>
+        </p>
+      </div>
+
+      <div className="grid grid-cols-2 gap-y-3 text-gray-700 font-medium text-[16px] leading-[24px]">
+        {productData.deliveryData?.features?.map((item) => (
+          <div key={item.id} className="flex items-center gap-2">
+            <Check size={19} className="text-[#16483C]" />
+            <span>{item.label}</span>
+          </div>
+        ))}
+      </div>
+
+    </div>
           {/* PINCODE */}
-         
             <div className="flex gap-2">
-              <input value={pincode} onChange={e=>setPincode(e.target.value)} className="border border-[#C1A58B] px-3 py-2 rounded-md w-[450px]" placeholder="Enter Pincode & check"/>
+              <input value={pincode} onChange={e=>setPincode(e.target.value)} className="border border-[#C1A58B] px-3 py-2 rounded-md h-[50px] w-[420px]" placeholder="Enter Pincode & check"/>
               <button onClick={checkPincode} className="bg-[#C1A58B] text-white px-6 rounded-md cursor-pointer">Apply Now</button>
             </div>
             {pinStatus && <p className="text-sm">{pinStatus}</p>}
 
-          {/* DESCRIPTION */}
-          <div>
-            <h3 className="font-semibold mb-2">Description</h3>
-            <p className="text-gray-600 whitespace-pre-line">{productData.description}</p>
+        {/* Description */}
+      <div className="pt-4">
+        <h2 className="text-lg font-semibold border-b-2 border-black inline-block">
+          { productData.descriptionData.title}
+        </h2>
+
+      {/* Content */}
+        <div className="mt-4 w-[588px] space-y-4 text-[#202020] text-[17px] leading-6">
+          <p className="whitespace-pre-line">
+            {productData.descriptionData.content}
+          </p>
+
+          {/* Details */}
+          <div className="space-y-6 font-medium text-gray-700 leading-6 align-middle">
+            {productData.descriptionData.details.map((item, index) => (
+              <p key={index}>
+                <span>{item.label} :</span>{" "}
+                {item.value}
+              </p>
+            ))}
           </div>
 
-          <p className="text-gray-500 text-sm">Delivery Time : {productData.deliveryWeeks}</p>
+        </div>
+    </div>
 
-          {/* ACCORDION */}
-
- <div className="w-full max-w-5xl mx-auto px-4 md:px-8 py-10">
+     {/* ACCORDION */}
+ <div className="max-w-xl">
       <div className="border-t border-[#949191]">
         {productData.accordionData.map((item, i) => (
           <div key={i} className="border-b border-[#949191]">
@@ -203,8 +442,11 @@ export default function ProductPage() {
         ))}
       </div>
 
-      {/* Safe Checkout */}
-      <div className="mt-10">
+      
+
+    </div>
+    {/* Safe Checkout */}
+      <div className=" w-xl mt-8">
 
         <div className="flex items-center gap-4 justify-center mb-6">
           <div className="flex-1 border-t border-[#949191]"></div>
@@ -219,25 +461,23 @@ export default function ProductPage() {
         {/* Payment Icons */}
         <div className="flex flex-wrap justify-center gap-4">
 
-          {productData.payments.map((icon, i) => (
+          {productData.payments.slice(3, 10).map((icon, index) => (
             <div
-              key={i}
-              className="w-[72px] h-[42px] flex items-center justify-center border rounded-md px-5 py-1"
+              key={index}
+              className="w-[68px] h-[42px] flex items-center justify-center border rounded-md px-3 py-1"
             >
               <Image
                 src={icon}
                 alt="payment"
-               width={icon.includes("paypal") ? 44 : 66}
-               height={icon.includes("paypal") ? 31 : 43}
-                className="object-contain cursor-pointer"
+               width={icon.includes("paypal") ? 30 : 40}
+               height={icon.includes("paypal") ? 16 : 30}
+                className="object-contain cursor-pointer "
               />
             </div>
           ))}
 
         </div>
       </div>
-
-    </div>
         </div>
         
       </div>
@@ -252,8 +492,6 @@ export default function ProductPage() {
         </h2>
 
         <div className="flex flex-col lg:flex-row items-center gap-10">
-
-          {/* PRODUCTS */}
           <div className="flex flex-col md:flex-row items-center gap-3 flex-1">
 
             {products.map((product, index) => (
@@ -285,7 +523,6 @@ export default function ProductPage() {
 
                 </div>
 
-                {/* PLUS */}
               {index < products.length - 1 && (
               <div className="flex items-center justify-center w-6 h-6 rounded-full border border-[#D6C4B2] bg-white text-3xl leading-none text-gray-700">
                 <Plus size={20} strokeWidth={2} className="text-black" />
@@ -298,27 +535,26 @@ export default function ProductPage() {
           </div>
 
           {/* PRICE BOX */}
-          <div className="w-[260px]">
+          <div className="w-[160px]">
 
-            <p className="font-semibold text-base text-[#202020] text-xl mb-2">Price Total:</p>
+            <p className="font-semibold text-base text-[#202020] text-[16px] mb-2">Price Total:</p>
 
             <div className="flex items-center gap-3 mb-5">
 
-              <span className="line-through text-gray-500">
+              <span className="line-through text-[16px] text-gray-500">
                 ₹{totalPrice.toLocaleString()}
               </span>
 
-              <span className="text-xl font-semibold">
+              <span className="text-xl text-[16px] font-semibold">
                 ₹{finalPrice.toLocaleString()}
               </span>
 
             </div>
-
-            <button className="bg-[#B89A82] text-white w-full py-3 px-auto rounded-md mb-4">
+            <PrimaryButton variant="goldSoft" className="text-xs rounded-md">
               Add to Cart
-            </button>
+            </PrimaryButton>
 
-            <p className="font-normal text-[16px] leading-[24px] tracking-[0px] text-center">
+            <p className="font-normal text-[16px] leading-[24px] tracking-[0px] mt-4 text-center">
               Get a {discount}% discount buying these products together
             </p>
 
@@ -423,8 +659,9 @@ export default function ProductPage() {
     </div>
 
     {/* Review section */}
-
-    <div> Add your Review </div>
+   <div>
+      <ReviewsSection />
+    </div>
 
 {/* Discount */}
     <div className="bg-[#FAEEE3] py-16 px-6">
