@@ -860,3 +860,78 @@ export const reviewsPageData = {
     },
   ],
 };
+
+
+// Cart Data
+export const cartPageData = {
+  header: "Your Cart",
+  freeShippingText: "Only ₹110 away from Free Shipping",
+  hurryText:
+    "Please, hurry! Someone has placed ab order on one of the items you have in the cart. We'll keep it for you for 39:54 minutes.",
+
+  orderSummary: {
+    title: "ORDER SUMMARY",
+    subtotal: "Subtotal",
+    couponPlaceholder: "Enter Coupon Code",
+    total: "TOTAL:",
+    button: "Proceed to Checkout",
+  },
+
+  giftText: "WANT TO MAKE IT SPECIAL? GIFT WRAP FOR ₹10",
+  deliveryText: "Order in the next 20 hours 50 minutes to get it by MONDAY 27",
+  taxes: "Taxes and shipping are calculated at checkout",
+  youMayAlsoLike: "You May Also Like",
+};
+
+export const initialCart = [
+  {
+    id: 1,
+    name: "Blush Dynasty",
+    desc: "Description",
+    price: 79500,
+    oldPrice: 80000,
+    quantity: 1,
+    image: "/images/p5.png",
+  },
+  {
+    id: 2,
+    name: "Dessert Dawn Saree",
+    desc: "Description",
+    price: 46750,
+    oldPrice: 53000,
+    quantity: 1,
+    image: "/images/p6.png",
+  },
+];
+
+export const suggestedProducts = [
+  {
+    id: 3,
+    name: "Grapefruit",
+    desc: "Description",
+    price: 1440,
+    oldPrice: 1500,
+    quantity: 1,
+    image: "/images/p3.png",
+  },
+  {
+    id: 4,
+    name: "Cajeput",
+    desc: "Description",
+    price: 840,
+    oldPrice: 1000,
+    quantity: 1,
+    image: "/images/p4.png",
+  },
+];
+
+export const orderSummaryData = {
+  title: "ORDER SUMMARY",
+  subtotal: "Subtotal",
+  couponPlaceholder: "Enter Coupon Code",
+  total: "TOTAL:",
+  note: "Tax included and shipping calculated at checkout",
+  termsText: "I agree with Terms and Conditions",
+  button: "Proceed to Checkout",
+  error: "Please accept Terms & Conditions",
+};

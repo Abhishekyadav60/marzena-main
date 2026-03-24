@@ -5,7 +5,7 @@ export default function PrimaryButton({
   children,
   href,
   onClick,
-  variant = "primary, light, gold, goldsoft",
+  variant = "primary, light, gold, goldSoft",
   className = "",
 }) {
   const base =
