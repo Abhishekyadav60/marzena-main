@@ -38,14 +38,12 @@ export default function OrderSummary({ cart }) {
   };
 
  return (
-  <div className="w-full max-w-[380px] rounded-lg p-6 h-fit sticky top-6 bg-white">
+  <div className="w-full max-w-[400px] rounded-lg p-6 h-fit sticky top-6 bg-white">
 
-    {/* TITLE */}
     <h2 className="text-[14px] tracking-[1px] font-normal text-[26px] leading-[32px] text-[#C1A58B] pb-2 border-b border-[#EF9491]">
       {orderSummaryData.title}
     </h2>
 
-    {/* SUBTOTAL */}
     <div className="flex justify-between border-b border-[#C1A58B] pb-3 items-center mt-4 text-[14px]">
       <span className="text-[#202020] font-normal text-[22px] leading-[28px] ">
         {orderSummaryData.subtotal}
@@ -68,7 +66,7 @@ export default function OrderSummary({ cart }) {
         className="w-full border border-[#EF9491] px-3 py-2 text-[16px] outline-none placeholder:text-[#C1A58B]"
       />
 
-      <p className="mt-1 font-normal text-[16px] leading-[22px]">
+      <p className="mt-1 font-normal text-[17px] leading-[22px]">
         Coupon code will be applied on the checkout page
       </p>
     </div>
@@ -92,7 +90,7 @@ export default function OrderSummary({ cart }) {
 
     {/* NOTE */}
     <div className="mt-3 border-t border-[#C1A58B]">
-    <p className="text-[16px]mt-10 leading-[22px]">
+    <p className="text-[17px] mt-4 leading-[22px]">
       {orderSummaryData.note}
     </p>
     </div>
@@ -106,10 +104,10 @@ export default function OrderSummary({ cart }) {
           setChecked(!checked);
           setError("");
         }}
-        className="mt-[5px] w-[16px] h-[16px]"
+        className="mt-[5px] w-[16px] h-[16px] cursor-pointer"
       />
 
-      <p className="text-[16px] text-[#202020] leading-[24px]">
+      <p className="text-[17px] text-[#202020] leading-[24px]">
         I agree with{" "}
         <span className="underline cursor-pointer">
           Terms and Conditions
@@ -127,7 +125,7 @@ export default function OrderSummary({ cart }) {
     {/* BUTTON */}
     <button
       onClick={handleCheckout}
-      className="bg-[#C1A58B] text-white w-full py-2.5 mt-5 rounded-md text-[14px] font-medium hover:opacity-90 transition"
+      className="bg-[#C1A58B] text-white w-full py-2.5 mt-8 cursor-pointer rounded-md text-[14px] font-medium hover:opacity-90 transition"
     >
       {orderSummaryData.button}
     </button>

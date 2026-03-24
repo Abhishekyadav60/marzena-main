@@ -21,6 +21,13 @@ export default function CartPage() {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
+  
+
+const remaining = Math.max(
+  cartPageData.freeShipping.targetAmount - subtotal,
+  0
+);
+
 
   const target = 3200;
   const progress = Math.min((subtotal / target) * 100, 100);
@@ -99,7 +106,7 @@ export default function CartPage() {
       }, []);
 
   return (
-    <div className="max-w-[1400px] mx-auto p-6 text-[#202020]">
+    <div className="max-w-[1440px] mx-auto p-6 text-[#202020]">
 
       {/* HEADER */}
       <h1 className="font-normal text-[50px] leading-[58px] mb-4">
@@ -108,25 +115,49 @@ export default function CartPage() {
 
       {/* PROGRESS */}
       <div className="mb-2">
-        <div className="w-full h-[15px] bg-[#e6e6e6] rounded-full overflow-hidden">
-          <div
-            className="h-full bg-[#5FAE8B]"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-        <p className="font-normal text-[18px] leading-[28px] mt-5">
-          {cartPageData.freeShippingText}
-        </p>
-      </div>
+       <div className=" relative w-full h-[15px] bg-[#e6e6e6] rounded-full overflow-hidden">
+      <div className="h-full bg-[#6FCF97] rounded-full transition-all duration-500"
+      style={{ width: `${progress}%` }}
+    />
 
-      <div className="bg-[#C1A58B] text-center text-white mt-6 px-4 py-2 rounded-lg mb-4 text-[16px]">
-        {cartPageData.hurryText}
-      </div>
+     <div className="absolute top-1/2 -translate-y-1/2 transition-all duration-500"
+      style={{ left: `calc(${progress}% - 12px)` }}
+    >
+
+      <Image
+        src="/icons/truck.png" 
+        width={24}
+        height={24}
+        alt="truck"
+      />
+        </div>
+        </div>
+        
+         <p className="text-[18px] leading-[28px] mt-5 text-[#6B6B6B]">
+         {cartPageData.freeShipping.prefix}{" "}
+        <span className="text-black font-semibold">
+         ₹110
+        </span>{" "}
+        {cartPageData.freeShipping.suffix}{" "}
+         <span className="text-black font-medium">
+         {cartPageData.freeShipping.highlight}
+       </span>
+        </p>
+     
+
+    <div className="bg-[#C1A58B] flex items-center justify-center gap-16 text-white mt-6 px-4 py-2 rounded-lg mb-4 text-[17px]">
+          <Image
+            src="/icons/capa.png"   
+            width={22}
+            height={22}
+            alt="icon"
+          />
+          <span>{cartPageData.hurryText}</span>
+        </div>
 
   
       <div className="grid grid-cols-[1.9fr_1.3fr] gap-10 mt-12 items-start">
 
-       
         <div className="w-full">
           <div className="bg-[#C1A58B] grid grid-cols-[2.5fr_1fr_1fr_1fr_0.5fr] items-center text-white px-6 py-2 rounded-t-lg text-[16px]">
             <span>Product</span>
@@ -176,7 +207,7 @@ export default function CartPage() {
                 <div className="flex items-center border border-[#EF9491] rounded-md h-[40px] overflow-hidden">
                   <button
                     onClick={() => dec(item.id)}
-                    className="w-[36px] h-full flex items-center justify-center text-[18px]"
+                    className="w-[36px] h-full flex items-center justify-center text-[18px] cursor-pointer"
                   >
                     -
                   </button>
@@ -187,7 +218,7 @@ export default function CartPage() {
 
                   <button
                     onClick={() => inc(item.id)}
-                    className="w-[36px] h-full flex items-center justify-center text-[18px]"
+                    className="w-[36px] h-full flex items-center justify-center text-[18px] cursor-pointer"
                   >
                     +
                   </button>
@@ -204,7 +235,7 @@ export default function CartPage() {
                   <img
                     src="/icons/delete.png"
                     alt="delete"
-                    className="w-4 h-4"
+                    className="w-4 h-4 cursor-pointer"
                   />
                 </button>
               </div>
@@ -293,7 +324,7 @@ export default function CartPage() {
                 <div className="flex items-center border border-[#EF9491] rounded-md h-[40px] overflow-hidden">
                   <button
                     onClick={() => dec(item.id)}
-                    className="w-[36px] h-full flex items-center justify-center text-[24px]"
+                    className="w-[36px] h-full flex items-center justify-center text-[24px] cursor-pointer"
                   >
                     -
                   </button>
@@ -304,7 +335,7 @@ export default function CartPage() {
 
                   <button
                     onClick={() => inc(item.id)}
-                    className="w-[36px] h-full flex items-center justify-center text-[22px]"
+                    className="w-[36px] h-full flex items-center justify-center text-[22px] cursor-pointer"
                   >
                     +
                   </button>
@@ -321,14 +352,14 @@ export default function CartPage() {
                   <img
                     src="/icons/delete.png"
                     alt="delete"
-                    className="w-4 h-4"
+                    className="w-4 h-4 cursor-pointer"
                   />
                 </button>
               </div>
             </div>
           ))}
 
-           <div className=" w-3xl mt-10">
+           <div className="mt-10">
              <div className="flex items-center gap-4 justify-center mb-6">
             <div className="flex-1 border-t border-[#949191]"></div>
           
@@ -340,7 +371,7 @@ export default function CartPage() {
           </div>
           
           {/* Payment Icons */}
-          <div className="flex flex-wrap justify-center gap-12">
+          <div className="flex flex-wrap justify-center gap-13">
           
             {productData.payments.slice(3, 10).map((icon, index) => (
               <div
@@ -364,6 +395,7 @@ export default function CartPage() {
         {/* RIGHT */}
         <OrderSummary cart={cart} />
       </div>
+    </div>
     </div>
   );
 }

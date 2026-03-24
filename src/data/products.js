@@ -865,17 +865,14 @@ export const reviewsPageData = {
 // Cart Data
 export const cartPageData = {
   header: "Your Cart",
-  freeShippingText: "Only ₹110 away from Free Shipping",
+  freeShipping: {
+    prefix: "Only",
+    suffix: "away from",
+    highlight: "Free Shipping",
+    targetAmount: 3200,
+  },
   hurryText:
     "Please, hurry! Someone has placed ab order on one of the items you have in the cart. We'll keep it for you for 39:54 minutes.",
-
-  orderSummary: {
-    title: "ORDER SUMMARY",
-    subtotal: "Subtotal",
-    couponPlaceholder: "Enter Coupon Code",
-    total: "TOTAL:",
-    button: "Proceed to Checkout",
-  },
 
   giftText: "WANT TO MAKE IT SPECIAL? GIFT WRAP FOR ₹10",
   deliveryText: "Order in the next 20 hours 50 minutes to get it by MONDAY 27",
