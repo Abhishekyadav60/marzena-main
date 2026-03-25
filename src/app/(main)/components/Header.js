@@ -1,15 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { ShoppingCart } from "lucide-react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { menuItems } from "@/data/products"; 
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
   const pathname = usePathname();
+
+  useEffect(() => {
+  const updateCart = () => {
+    const cartData = JSON.parse(localStorage.getItem("cart")) || [];
+    setCartCount(cartData.length);
+  };
+
+  updateCart(); // page load pe
+
+  window.addEventListener("cartUpdated", updateCart);
+
+  return () => window.removeEventListener("cartUpdated", updateCart);
+}, []);
 
   return (
     <header className="w-full relative overflow-hidden">
@@ -88,16 +103,23 @@ export default function Header() {
             <Link href="/dashboard/wishlist">
               <Image src="/icons/hart.png" alt="wishlist" width={24} height={24} />
             </Link>
-            <Link href="/dashboard/cart">
-              <Image src="/icons/cart.png" alt="cart" width={24} height={24} />
+            <div className="relative">
+             <Link href="/dashboard/cart">
+               <ShoppingCart width={23} height={23} />
             </Link>
+
+             {cartCount > 0 && (
+               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] min-w-[16px] h-[16px] px-[3px] flex items-center justify-center rounded-full">
+                 {cartCount > 99 ? "99+" : cartCount}
+               </span>
+             )}
+           </div>
           </div>
         </div>
 
         {/* Mobile Layout */}
         <div className="flex md:hidden justify-between items-center">
 
-          {/* Right Icons */}
           <div className="flex gap-6">
             <Link href="/dashboard/profile">
               <Image src="/icons/user.png" alt="user" width={24} height={24} />
@@ -106,7 +128,7 @@ export default function Header() {
               <Image src="/icons/hart.png" alt="wishlist" width={24} height={24} />
             </Link>
             <Link href="/dashboard/cart">
-              <Image src="/icons/cart.png" alt="cart" width={24} height={24} />
+              <ShoppingCart width={23} height={23} />
             </Link>
           </div>
 

@@ -932,3 +932,50 @@ export const orderSummaryData = {
   button: "Proceed to Checkout",
   error: "Please accept Terms & Conditions",
 };
+
+export const relatedSectionData = {
+  title: "Related Products",
+  viewAllText: "View All",
+  products: [
+    {
+      id: 1,
+      name: "Doll Hearted",
+      image: "/images/dollHearted.png",
+      price: 450,
+      oldPrice: 500,
+      discount: 15,
+      rating: 4.7,
+      tag: "Bundle",
+    },
+    {
+      id: 2,
+      name: "Black Baby Doll Dress",
+      image: "/images/blackbabyDoll.png",
+      price: 450,
+      oldPrice: 500,
+      discount: 15,
+      rating: 4.7,
+      tag: "Bundle",
+    },
+    {
+      id: 3,
+      name: "Iced Out",
+      image: "/images/lcedout.png",
+      price: 450,
+      oldPrice: 500,
+      discount: 15,
+      rating: 4.7,
+      tag: "Bundle",
+    },
+    {
+      id: 4,
+      name: "Diva by the night",
+      image: "/images/divanight.png",
+      price: 450,
+      oldPrice: 500,
+      discount: 15,
+      rating: 4.7,
+      tag: "Bundle",
+    },
+  ],
+};

@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { useState } from "react"
 import { Heart } from "lucide-react"
+import { toast } from "react-hot-toast";
 import { products, heroData, features } from "@/data/products"
 import HeroSection from "@/app/(main)/components/HeroSection"
 import PrimaryButton from "@/app/(main)/components/PrimaryButton"
@@ -15,6 +16,31 @@ export default function CollectionPage() {
   const [dateSort, setDateSort] = useState("Date, Old To New")
   const [view, setView] = useState("grid4")
   const [priceSelected, setPriceSelected] = useState(false);
+
+  const addToCart = (product) => {
+  let cart = [];
+
+  if (typeof window !== "undefined") {
+    const existingCart = localStorage.getItem("cart");
+    cart = existingCart ? JSON.parse(existingCart) : [];
+  }
+
+  const exist = cart.find((item) => item.id === product.id);
+
+  if (exist) {
+    cart = cart.map((item) =>
+      item.id === product.id
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
+    );
+  } else {
+    cart.push({ ...product, quantity: 1 });
+    toast.success("Added to cart");
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  window.dispatchEvent(new Event("cartUpdated"));
+};
 
   // pagination state
   const [currentPage, setCurrentPage] = useState(1)
@@ -180,7 +206,9 @@ export default function CollectionPage() {
 
                   </div>
 
-                  <button className="mt-4 text-md border border-[#C1A58B] rounded-md px-5 py-2 hover:bg-[#685C20] hover:text-white transition">
+                  <button 
+                  onClick={() => addToCart(item)}
+                  className="mt-4 text-md border border-[#C1A58B] rounded-md px-5 py-2 hover:bg-[#685C20] hover:text-white transition">
                     ADD TO CART
                   </button>
 

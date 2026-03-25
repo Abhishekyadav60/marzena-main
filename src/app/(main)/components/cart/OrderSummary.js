@@ -7,13 +7,12 @@ export default function OrderSummary({ cart }) {
   const [checked, setChecked] = useState(false);
   const [error, setError] = useState("");
 
-  // SUBTOTAL CALCULATION (dynamic)
   const subtotal = cart.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
 
-  // DISCOUNT LOGIC (example)
+  // DISCOUNT 
   let discount = 0;
   if (coupon === "SAVE10") {
     discount = subtotal * 0.1;
@@ -31,7 +30,7 @@ export default function OrderSummary({ cart }) {
     setError("");
 
     // Yaha actual checkout ka logic aayega
-    alert("Proceeding to Checkout 🚀");
+    alert("Proceeding to Checkout");
 
     // Example:
     // router.push("/checkout");
