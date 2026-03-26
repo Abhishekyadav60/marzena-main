@@ -4,13 +4,13 @@ import Image from "next/image"
 import { useState } from "react"
 import { Heart } from "lucide-react"
 import { toast } from "react-hot-toast";
-import { products, heroData, features } from "@/data/products"
+import { catagorieData, heroData, features } from "@/data/products"
 import HeroSection from "@/app/(main)/components/HeroSection"
 import PrimaryButton from "@/app/(main)/components/PrimaryButton"
 import Pagination from "@/app/(main)/components/Pagination"
 import InstagramPage from "@/app/(main)/components/InstagramPage";
 
-export default function CollectionPage() {
+export default function CatagoriePage() {
 
   const [priceSort, setPriceSort] = useState("Default")
   const [dateSort, setDateSort] = useState("Date, Old To New")
@@ -46,7 +46,7 @@ export default function CollectionPage() {
   const [currentPage, setCurrentPage] = useState(1)
   const productsPerPage = 8
 
-  const filteredProducts = products.filter((item) => {
+  const filteredProducts = catagorieData.filter((item) => {
     if (priceSort === "Under ₹50,000") return item.price < 50000
     if (priceSort === "Under ₹80,000") return item.price < 80000
     if (priceSort === "Under ₹1,50,000") return item.price < 150000
@@ -72,7 +72,7 @@ export default function CollectionPage() {
       <div className="w-full">
         <div className="text-center py-9">
           <h1 className="text-4xl md:text-5xl font-['Javanese_Text'] font-normal text-[44px] leading-[52px] tracking-normal text-center uppercase">
-            COLLECTION
+            catagories
           </h1>
         </div>
 
@@ -115,10 +115,10 @@ export default function CollectionPage() {
         SORT BY PRICE
       </span>
       <select
-  value={priceSort}
-  onChange={(e) => {
-    setPriceSort(e.target.value)
-    setPriceSelected(true)
+      value={priceSort}
+      onChange={(e) => {
+       setPriceSort(e.target.value)
+       setPriceSelected(true)
   }}
   className={`h-[32px] text-sm pt-[3px] pb-[3px] pl-[12px] ${
     priceSelected ? "min-w-[90px] w-fit pr-[12px]" : "w-[90px]"

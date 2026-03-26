@@ -979,3 +979,153 @@ export const relatedSectionData = {
     },
   ],
 };
+
+
+// CATAGORIES
+export const catagorieData = [
+  {
+    id: 1,
+    name: "Love Buzz",
+    image: "/images/p4.png",
+    price: 79500,
+    oldPrice: 88000,
+    discount: 10,
+    rating: 4.7
+  },
+  {
+    id: 2,
+    name: "Blush Dynasty",
+    image: "/images/p5.png",
+    price: 79500,
+    oldPrice: 93500,
+    discount: 15,
+    rating: 4.7
+  },
+  {
+    id: 3,
+    name: "Dessert Dawn Saree",
+    image: "/images/p6.png",
+    price: 46750,
+    oldPrice: 55500,
+    discount: 15,
+    rating: 4.7
+  },
+  {
+    id: 4,
+    name: "Champagne Drape",
+    image: "/images/p7.png",
+    price: 145000,
+    oldPrice: 184000,
+    discount: 15,
+    rating: 4.7
+  },
+  {
+    id: 5,
+    name: "Midnight Marina saree set",
+    image: "/images/p8.png",
+    price: 156500,
+    oldPrice: 180000,
+    discount: 10,
+    rating: 4.7
+  },
+  {
+    id: 6,
+    name: "Meena Harris - Bloush Pink Embelished",
+    image: "/images/p9.png",
+    price: 165500,
+    oldPrice: 262000,
+    discount: 15,
+    rating: 4.7
+  },
+  {
+    id: 7,
+    name: "Dessert Dawn Saree",
+    image: "/images/p10.png",
+    price: 46750,
+    oldPrice: 55500,
+    discount: 15,
+    rating: 4.7
+  },
+  {
+    id: 8,
+    name: "Champagne Drape",
+    image: "/images/p11.png",
+    price: 145000,
+    oldPrice: 184000,
+    discount: 15,
+    rating: 4.7
+  },
+  {
+    id: 9,
+    name: "Royal Aqua saree set",
+    image: "/images/p12.png",
+    price: 99500,
+    oldPrice: 99000,
+    discount: 5,
+    rating: 4.7
+  },
+  {
+    id: 10,
+    name: "Seven Seas Saree",
+    image: "/images/p13.png",
+    price: 149500,
+    oldPrice: 150500,
+    discount: 15,
+    rating: 4.7
+  },
+  {
+    id: 11,
+    name: "Jasmine Jubilee",
+    image: "/images/p14.png",
+    price: 112500,
+    oldPrice: 55500,
+    discount: 15,
+    rating: 4.7
+  },
+  {
+    id: 12,
+    name: "Taupe it up saree set",
+    image: "/images/p15.png",
+    price: 118500,
+    oldPrice: 184000,
+    discount: 15,
+    rating: 4.7
+  },
+  {
+    id: 13,
+    name: "Rose Quartz Romance-pre-stitched saree",
+    image: "/images/p16.png",
+    price: 181500,
+    oldPrice: 185000,
+    discount: 10,
+    rating: 4.7
+  },
+  {
+    id: 14,
+    name: "Ivory & Red Saree Set",
+    image: "/images/p17.png",
+    price: 244500,
+    oldPrice: 255500,
+    discount: 15,
+    rating: 4.7
+  },
+  {
+    id: 15,
+    name: "Sobhita in Blue & Gold Saree Set",
+    image: "/images/p18.png",
+    price: 200500,
+    oldPrice: 300500,
+    discount: 15,
+    rating: 4.7
+  },
+  {
+    id: 16,
+    name: "Jessica Wang in Olive Shaded ",
+    image: "/images/p19.png",
+    price: 122500,
+    oldPrice: 140000,
+    discount: 15,
+    rating: 4.7
+  },
+]
+

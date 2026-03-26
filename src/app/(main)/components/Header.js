@@ -27,7 +27,7 @@ export default function Header() {
 }, []);
 
   return (
-    <header className="w-full relative overflow-hidden">
+    <header className="w-full bg-[#FAEEE3] relative overflow-hidden">
 
       {/* Flower Images */}
       <Image
@@ -75,10 +75,10 @@ export default function Header() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-3 relative z-20">
-        <div className="hidden md:flex justify-between items-center">
+        <div className="hidden mb-5 md:flex justify-between items-center">
 
           {/* Left Menu */}
-          <div className="flex gap-9 text-zinc-800 font-sans">
+          <div className="flex gap-9 text-zinc-800 font-sans text-[17px] leading-[24px] tracking-normal capitalize">
             {menuItems.map((item) => (
               <Link
                 key={item.id}

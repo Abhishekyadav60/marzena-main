@@ -18,7 +18,7 @@ export default function Pagination({ totalPages, currentPage, setCurrentPage }) 
           className={`flex items-center gap-2 px-3 py-1 rounded-md
             ${currentPage === 1 
               ? "text-black cursor-not-allowed" 
-              : "bg-[#C3A080] text-black hover:bg-[#b39372]"
+              : "bg-[#C3A080] text-black hover:bg-[#b39372] cursor-pointer"
             }`}
         >
           ← Previous
@@ -33,7 +33,7 @@ export default function Pagination({ totalPages, currentPage, setCurrentPage }) 
               <button
                 key={page}
                 onClick={() => goToPage(page)}
-                className={`w-8 h-8 flex items-center justify-center rounded-md ${
+                className={`w-8 h-8 flex items-center justify-center rounded-md cursor-pointer ${
                   currentPage === page
                     ? "bg-[#b39372] text-white"
                     : "text-gray-800"
@@ -49,10 +49,10 @@ export default function Pagination({ totalPages, currentPage, setCurrentPage }) 
         <button
           onClick={() => goToPage(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className={`flex items-center gap-2 px-3 py-1 rounded-md
+          className={`flex items-center gap-2 px-3 py-1 rounded-md 
             ${currentPage === totalPages 
               ? "text-black cursor-not-allowed"
-              : "bg-[#C3A080] text-black hover:bg-[#b39372]"
+              : "bg-[#C3A080] text-black hover:bg-[#b39372] cursor-pointer"
             }`}
         >
           Next →
