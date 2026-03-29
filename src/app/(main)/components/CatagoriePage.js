@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useState } from "react"
 import { Heart } from "lucide-react"
 import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 import { catagorieData, heroData, features } from "@/data/products"
 import HeroSection from "@/app/(main)/components/HeroSection"
 import PrimaryButton from "@/app/(main)/components/PrimaryButton"
@@ -11,6 +12,8 @@ import Pagination from "@/app/(main)/components/Pagination"
 import InstagramPage from "@/app/(main)/components/InstagramPage";
 
 export default function CatagoriePage() {
+
+  const router = useRouter();
 
   const [priceSort, setPriceSort] = useState("Default")
   const [dateSort, setDateSort] = useState("Date, Old To New")
@@ -175,6 +178,10 @@ export default function CatagoriePage() {
                     src={item.image}
                     alt={item.name}
                     fill
+                    onClick={() => {
+                    localStorage.setItem("selectedProduct", JSON.stringify(item));
+                     router.push(`/dashboard/product/${item.id}`);
+                     }}
                     className="object-cover object-[50%_25%] rounded-[8px] group-hover:scale-105 transition duration-500"
                   />
                 </div>

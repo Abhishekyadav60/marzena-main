@@ -1,6 +1,6 @@
 "use client";
 
-import { useState , useEffect} from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -14,17 +14,17 @@ export default function Header() {
   const pathname = usePathname();
 
   useEffect(() => {
-  const updateCart = () => {
-    const cartData = JSON.parse(localStorage.getItem("cart")) || [];
-    setCartCount(cartData.length);
-  };
+    const updateCart = () => {
+      const cartData = JSON.parse(localStorage.getItem("cart")) || [];
+      setCartCount(cartData.length);
+    };
 
-  updateCart(); // page load pe
+    updateCart(); // page load
 
-  window.addEventListener("cartUpdated", updateCart);
+    window.addEventListener("cartUpdated", updateCart);
 
-  return () => window.removeEventListener("cartUpdated", updateCart);
-}, []);
+    return () => window.removeEventListener("cartUpdated", updateCart);
+  }, []);
 
   return (
     <header className="w-full bg-[#FAEEE3] relative overflow-hidden">
@@ -45,24 +45,25 @@ export default function Header() {
         height={453}
         className="absolute w-[570px] h-[274px] rotate-[-38deg] top-[-20px] left-[1020px] opacity-20 pointer-events-none"
       />
-{/* mobile */}
-  <Image
-  src="/icons/flower-top.png"
-  alt="flower"
-  width={800}
-  height={350}
-  className="md:hidden absolute -left-[25vw] -top-[40px] w-[400px] max-w-[360px] rotate-[50deg] opacity-20 pointer-events-none"
-/>
 
-<Image
-  src="/icons/flower-right.png"
-  alt="flower"
-  width={800}
-  height={350}
-  className="md:hidden absolute -right-[20vw] top-[10px] w-[400px] max-w-[340px] rotate-[35deg] opacity-20 pointer-events-none"
-/>
+      {/* mobile */}
+      <Image
+        src="/icons/flower-top.png"
+        alt="flower"
+        width={800}
+        height={350}
+        className="md:hidden absolute -left-[25vw] -top-[40px] w-[400px] max-w-[360px] rotate-[50deg] opacity-20 pointer-events-none"
+      />
 
-      {/* Logo Center */}
+      <Image
+        src="/icons/flower-right.png"
+        alt="flower"
+        width={800}
+        height={350}
+        className="md:hidden absolute -right-[20vw] top-[10px] w-[400px] max-w-[340px] rotate-[35deg] opacity-20 pointer-events-none"
+      />
+
+      {/* Logo */}
       <div className="max-w-7xl mx-auto flex justify-center py-4 relative z-10">
         <Link href="/dashboard">
           <Image
@@ -75,9 +76,11 @@ export default function Header() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-3 relative z-20">
+
+        {/* Desktop */}
         <div className="hidden mb-5 md:flex justify-between items-center">
 
-          {/* Left Menu */}
+          {/* Menu */}
           <div className="flex gap-9 text-zinc-800 font-sans text-[17px] leading-[24px] tracking-normal capitalize">
             {menuItems.map((item) => (
               <Link
@@ -94,42 +97,55 @@ export default function Header() {
             ))}
           </div>
 
-          {/* Right Icons */}
+          {/* Icons */}
           <div className="flex items-center gap-6">
-            {/* <Link href="/dashboard/profile"> */}
             <Link href="/dashboard/profile">
               <Image src="/icons/user.png" alt="user" width={24} height={24} />
             </Link>
+
             <Link href="/dashboard/wishlist">
               <Image src="/icons/hart.png" alt="wishlist" width={24} height={24} />
             </Link>
-            <div className="relative">
-             <Link href="/dashboard/cart">
-               <ShoppingCart width={23} height={23} />
-            </Link>
 
-             {cartCount > 0 && (
-               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] min-w-[16px] h-[16px] px-[3px] flex items-center justify-center rounded-full">
-                 {cartCount > 99 ? "99+" : cartCount}
-               </span>
-             )}
-           </div>
+            {/* CART */}
+            <div className="relative">
+              <Link href="/dashboard/cart">
+                <ShoppingCart width={23} height={23} />
+              </Link>
+
+              {cartCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] min-w-[16px] h-[16px] px-[3px] flex items-center justify-center rounded-full">
+                  {cartCount > 99 ? "99+" : cartCount}
+                </span>
+              )}
+            </div>
           </div>
         </div>
 
-        {/* Mobile Layout */}
+        {/* Mobile */}
         <div className="flex md:hidden justify-between items-center">
 
           <div className="flex gap-6">
             <Link href="/dashboard/profile">
               <Image src="/icons/user.png" alt="user" width={24} height={24} />
             </Link>
+
             <Link href="/dashboard/wishlist">
               <Image src="/icons/hart.png" alt="wishlist" width={24} height={24} />
             </Link>
-            <Link href="/dashboard/cart">
-              <ShoppingCart width={23} height={23} />
-            </Link>
+
+            {/* ✅ SAME CART LOGIC */}
+            <div className="relative">
+              <Link href="/dashboard/cart">
+                <ShoppingCart width={23} height={23} />
+              </Link>
+
+              {cartCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] min-w-[16px] h-[16px] px-[3px] flex items-center justify-center rounded-full">
+                  {cartCount > 99 ? "99+" : cartCount}
+                </span>
+              )}
+            </div>
           </div>
 
           {/* Hamburger */}

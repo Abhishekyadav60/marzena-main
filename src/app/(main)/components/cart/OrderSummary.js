@@ -29,7 +29,6 @@ export default function OrderSummary({ cart }) {
 
     setError("");
 
-    // Yaha actual checkout ka logic aayega
     alert("Proceeding to Checkout");
 
     // Example:

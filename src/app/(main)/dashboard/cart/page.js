@@ -253,9 +253,9 @@ const remaining = Math.max(
           </div>
 
           {/* CART ITEMS */}
-          {cart.map((item) => (
+          {cart.map((item, index) => (
             <div
-              key={item.id}
+             key={`${item.id}-${item.size}-${index}`}
               className="grid grid-cols-[2.5fr_1fr_1fr_1fr_0.5fr] items-center border border-[#E0DED7] px-6 py-4"
             >
               <div className="flex gap-3 items-center">

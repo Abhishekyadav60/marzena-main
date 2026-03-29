@@ -4,11 +4,13 @@
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import { homeData } from "@/data/products";
-import { heroData } from "@/data/products"
+import { heroData } from "@/data/products";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import PrimaryButton from "@/app/(main)/components/PrimaryButton";
 import InstagramPage from "@/app/(main)/components/InstagramPage";
 import HeroSection from "@/app/(main)/components/HeroSection";
+
 
 export default function Home() {
   const {
@@ -20,6 +22,8 @@ export default function Home() {
     reviews,
     features,
   } = homeData;
+
+  const router = useRouter();
 
   return (
     <>
@@ -85,65 +89,85 @@ export default function Home() {
     </section>
 
       {/* BEST SELLERS */}
-      <section className="relative bg-[rgba(250,238,227,1)] py-16 px-6 md:px-12 ">
-        <div className="flex justify-between items-center mb-12">
-          <h2 className="text-3xl font-serif text-[#2f2f2f]">
-            {bestSellers.heading}
-          </h2>
-          {/* Flower */}
-           <Image
-                  src="/icons/flower.png"
-                  alt="flower"
-                  width={464}
-                  height={453}
-                  className="absolute rotate-[50deg] scale-x-[-1] opacity-30 top-[-300px] right-[1220px] pointer-events-none"
-                />
-          <button className="text-md underline text-[#2f2f2f]">
-            {bestSellers.button}
-          </button>
+    <section className="relative bg-[rgba(250,238,227,1)] py-16 px-6 md:px-12 ">
+    <div className="flex justify-between items-center mb-12">
+    <h2 className="text-3xl font-serif text-[#2f2f2f]">
+      {bestSellers.heading}
+    </h2>
+
+    {/* Flower */}
+    <Image
+      src="/icons/flower.png"
+      alt="flower"
+      width={464}
+      height={453}
+      className="absolute rotate-[50deg] scale-x-[-1] opacity-30 top-[-300px] right-[1220px] pointer-events-none"
+    />
+
+    <button className="text-md underline text-[#2f2f2f]">
+      {bestSellers.button}
+    </button>
+  </div>
+
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+    {bestSellers.items.map((item, index) => (
+      
+        <div key={item.id || index} className="group">
+
+          <div className="relative overflow-hidden rounded-xl">
+            <Image
+              src={item.image}
+              alt={item.name}
+              width={600}
+              height={600}
+              onClick={() => {
+             localStorage.setItem("selectedProduct", JSON.stringify(item));
+             router.push(`/dashboard/product/${item.id}`);
+              }}
+              className="w-full h-[470px] object-cover object-[50%_30%] cursor-pointer transition-transform duration-300 group-hover:scale-105"
+            />
+
+            <span className="absolute top-0 left-0 rounded-tl-md bg-black text-white text-xs px-3 py-1">
+              {item.tag}
+            </span>
+          </div>
+
+          <p className="mt-4 text-sm text-gray-800">
+            {item.name}
+          </p>
+
+          <div className="flex items-center gap-1 text-yellow-500 text-sm mt-1">
+            {[...Array(5)].map((_, i) => (
+              <FaStar key={i} />
+            ))}
+            <span className="text-gray-600 ml-2">{item.rating}</span>
+          </div>
+
+          <div className="flex items-center gap-3 mt-2">
+            <span className="font-semibold text-lg">₹{item.price.toLocaleString()}</span>
+            <span className="line-through text-gray-500 text-sm">
+              ₹{item.oldPrice.toLocaleString()}
+            </span>
+            {/* <span className="text-sm text-gray-600">
+              {item.discount}
+            </span> */}
+
+             <span className="text-sm text-gray-600">
+              {item.discount}% off
+              </span>
+          </div>
+
+          <div className="flex gap-2 p-3">
+            <div className="w-4 h-4 rounded-full bg-pink-400"></div>
+            <div className="w-4 h-4 rounded-full bg-orange-400"></div>
+            <div className="w-4 h-4 rounded-full bg-gray-900"></div>
+          </div>
+
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
-          {bestSellers.items.map((item) => (
-            <div key={item.id}>
-              <div className="relative">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  width={600}
-                  height={600}
-                  className="rounded-xl w-full h-[470px] object-cover object-[50%_30%]"
-                />
-                <span className="absolute top-0 left-0 rounded-tl-md bg-black text-white text-xs px-3 py-1">
-                  {item.tag}
-                </span>
-              </div>
-
-              <p className="mt-4 text-sm text-gray-800">{item.title}</p>
-
-              <div className="flex items-center gap-1 text-yellow-500 text-sm mt-1">
-                {[...Array(5)].map((_, i) => (
-                  <FaStar key={i} />
-                ))}
-                <span className="text-gray-600 ml-2">{item.rating}</span>
-              </div>
-
-              <div className="flex items-center gap-3 mt-2">
-                <span className="font-semibold text-lg">{item.price}</span>
-                <span className="line-through text-gray-500 text-sm">
-                  {item.oldPrice}
-                </span>
-                <span className="text-sm text-gray-600">{item.discount}</span>
-              </div>
-              <div className="flex gap-2 md:gap-2 p-3">
-              <div className="w-4 h-4 md:w-4 md:h-4 rounded-full bg-pink-400"></div>
-              <div className="w-4 h-4 md:w-4 md:h-4 rounded-full bg-orange-400"></div>
-              <div className="w-4 h-4 md:w-4 md:h-4 rounded-full bg-gray-900"></div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+    ))}
+  </div>
+</section>
 
 {/* why section */}
        <section className="w-full bg-white py-20 px-6 md:px-16">
@@ -211,6 +235,7 @@ export default function Home() {
       >
         {/* Image Box */}
         <div className="w-full md:w-1/2">
+        <Link href="/dashboard/catagorie">
           <Image
             src={cat.image}
             alt={cat.title}
@@ -218,6 +243,7 @@ export default function Home() {
             height={538}
             className="w-full h-[538px] rounded-lg object-cover object-[50%_30%]"
           />
+          </Link>
         </div>
 
         {/* Text Box */}
@@ -246,10 +272,13 @@ export default function Home() {
             <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-8">
               {cat.desc}
             </p>
-
+              
+              <Link href="/dashboard/catagorie">
             <PrimaryButton variant="primary">
               {banner.button}
             </PrimaryButton>
+            </Link>
+
           </div>
         </div>
       </div>
